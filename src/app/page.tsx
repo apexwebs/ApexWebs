@@ -45,7 +45,7 @@ export default function Home() {
       <p style={{ color: '#222', fontSize: '1.1rem', marginBottom: 18, lineHeight: 1.6 }}>
         Apex Webs is a Kenyan tech startup focused on providing <b>innovative, user-centric web solutions</b> for SMEs, schools, and startups. Our mission is to bridge the digital gap and empower local businesses to thrive online.
       </p>
-      <ul style={{ margin: '1.5rem 0', paddingLeft: 24, color: '#222', fontSize: '1.08rem', lineHeight: 1.7' }}>
+      <ul style={{ margin: '1.5rem 0', paddingLeft: 24, color: '#222', fontSize: '1.08rem', lineHeight: 1.7 }}>
         <li><strong>Mission:</strong> Provide innovative, user-centric web solutions for Kenyan businesses.</li>
         <li><strong>Vision:</strong> Be the catalyst for a digitally empowered, globally competitive Kenyan business environment.</li>
         <li><strong>Values:</strong> Innovation, Local Understanding, Affordability, Customer-Centricity, Community Empowerment.</li>
