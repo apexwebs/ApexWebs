@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +40,11 @@ export default function RootLayout({
           </div>
         </header>
         <nav style={{ display: 'flex', justifyContent: 'center', gap: '2rem', padding: '0.75rem 0', background: '#f8f8f8', borderBottom: '1px solid #eee' }}>
-          <a href="/" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Home</a>
-          <a href="/services" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Services</a>
-          <a href="/blog" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Blog</a>
-          <a href="/about" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>About</a>
-          <a href="/contact" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Contact</a>
+          <Link href="/" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Home</Link>
+          <Link href="/services" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Services</Link>
+          <Link href="/blog" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Blog</Link>
+          <Link href="/about" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>About</Link>
+          <Link href="/contact" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Contact</Link>
         </nav>
         <main>{children}</main>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
