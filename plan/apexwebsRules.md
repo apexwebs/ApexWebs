@@ -824,3 +824,41 @@ By following these rules, the Apex Webs project should achieve:
 **Remember**: These rules prioritize clean code, excellent documentation, Kenyan market focus, mobile optimization, and business success. Every component should be built with the end user (Kenyan businesses) and developer experience in mind.
 
 **Pamoja Tunaweza** - Together we can build an exceptional web platform! 🚀
+
+---
+
+## 🆕 Additional Project Rules (2024 AI Review)
+
+### 1. Per-Page Metadata
+- Every page must define its own metadata for SEO, including title, description, and keywords.
+- Use Next.js metadata API or export a `metadata` object per page.
+
+### 2. OpenGraph & Twitter Meta Tags
+- All main pages should include OpenGraph and Twitter meta tags for rich social sharing.
+- Use the structure provided in the rules above for consistency.
+
+### 3. Legal & Compliance Pages
+- The site must include Privacy Policy, Terms of Service, and a compliance statement for the Kenyan market.
+- These should be accessible from the footer.
+
+### 4. Automated Testing
+- Implement automated tests for critical flows (contact form, navigation, service links).
+- Use Jest and React Testing Library or Playwright for E2E.
+
+### 5. Lead Storage
+- Contact form submissions must be stored securely (e.g., Vercel KV, Postgres, or another backend).
+- Do not rely solely on email for lead capture.
+
+### 6. Analytics
+- Integrate Google Analytics (GA4) for traffic and conversion tracking.
+- Respect user privacy and provide cookie consent if required.
+
+### 7. Accessibility
+- All forms and navigation must be accessible (ARIA labels, keyboard navigation, color contrast).
+- Use tools like axe or Lighthouse to audit accessibility.
+
+### 8. Performance Optimization
+- Use Next.js image optimization and check Core Web Vitals.
+- Optimize for both mobile and desktop (especially legibility on wide screens).
+
+---
