@@ -5,7 +5,7 @@ export default function ApiIntegrationPage() {
     <section style={{ maxWidth: 800, margin: '2rem auto', padding: '2rem', background: '#fff', borderRadius: 12, boxShadow: '0 2px 8px #eee' }}>
       <h2 style={{ color: '#00704A', fontSize: '2rem', marginBottom: '1rem' }}>API Integration Services</h2>
       <p>
-        Seamlessly connect your business with Kenya's leading payment and government systems. We integrate M-PESA (Safaricom Daraja API), banking APIs, and government platforms for smooth, automated operations.
+        Seamlessly connect your business with Kenya&apos;s leading payment and government systems. We integrate M-PESA (Safaricom Daraja API), banking APIs, and government platforms for smooth, automated operations.
       </p>
       <ul style={{ margin: '1.5rem 0', paddingLeft: 20 }}>
         <li>M-PESA payments and disbursements</li>
