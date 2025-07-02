@@ -38,6 +38,13 @@ export default function RootLayout({
             <span style={{ fontSize: '1rem', color: '#00704A' }}><em>Pamoja Tunaweza</em> - Together We Can</span>
           </div>
         </header>
+        <nav style={{ display: 'flex', justifyContent: 'center', gap: '2rem', padding: '0.75rem 0', background: '#f8f8f8', borderBottom: '1px solid #eee' }}>
+          <a href="/" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Home</a>
+          <a href="/services" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Services</a>
+          <a href="/blog" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Blog</a>
+          <a href="/about" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>About</a>
+          <a href="/contact" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Contact</a>
+        </nav>
         <main>{children}</main>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
           &copy; {new Date().getFullYear()} Apex Webs. All rights reserved.

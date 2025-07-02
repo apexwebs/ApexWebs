@@ -17,8 +17,8 @@ This file is maintained by the AI to track its own progress and contributions to
 
 ### Technical & Content Tasks
 - [x] Scaffold service pages (3 core, 3 coming soon)
-- [ ] Implement contact form with Kenyan validation
-- [ ] Set up blog and static content
+- [x] Implement contact form with Kenyan validation
+- [ ] Set up blog and static content (in progress)
 - [ ] Set up lead tracking (Vercel KV)
 - [ ] Support SEO and analytics integration
 - [ ] Review for Kenyan market compliance and monetization
