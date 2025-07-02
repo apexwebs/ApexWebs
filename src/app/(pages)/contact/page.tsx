@@ -76,7 +76,7 @@ export default function ContactPage() {
         <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={60} height={60} style={{ borderRadius: '14px', boxShadow: '0 2px 8px #00704A33' }} />
         <div>
           <h1 style={{ margin: 0, fontSize: '2rem', color: '#00704A', fontWeight: 800, letterSpacing: '-1px' }}>Contact Us</h1>
-          <p style={{ margin: 0, fontWeight: 600, color: '#0ea5e9', fontSize: '1.05rem' }}>We'd love to hear from you!</p>
+          <p style={{ margin: 0, fontWeight: 600, color: '#0ea5e9', fontSize: '1.05rem' }}>We&apos;d love to hear from you!</p>
         </div>
       </div>
       {submitted ? (
