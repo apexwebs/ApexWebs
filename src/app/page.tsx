@@ -1,5 +1,4 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 
 export default function Home() {
   return (
@@ -26,7 +25,7 @@ export default function Home() {
         </a>
       </div>
       <p style={{ color: '#888', fontSize: '0.95rem' }}>
-        Serving all of Kenya. <strong>Let's build your digital future together!</strong>
+        Serving all of Kenya. <strong>Let&apos;s build your digital future together!</strong>
       </p>
     </section>
   );
