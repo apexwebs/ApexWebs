@@ -14,7 +14,7 @@ export default function Home() {
         overflow: 'hidden',
       }}
     >
-      {/* Lively animated accent */}
+      {/* Lively animated accent ~ISIPITE~*/}
       <div style={{
         position: 'absolute',
         top: -60,
