@@ -39,7 +39,6 @@ export default function AboutPage() {
         <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={70} height={70} style={{ borderRadius: '14px', boxShadow: '0 2px 8px #00704A33' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '2.2rem', color: '#00704A', fontWeight: 800, letterSpacing: '-1px' }}>About Apex Webs</h2>
-          {/* eslint-disable-next-line react/no-unescaped-entities*/}
           <p style={{ margin: 0, fontWeight: 600, color: '#0ea5e9', fontSize: '1.05rem' }}>Empowering Kenya&apos;s Digital Future</p>
         </div>
       </div>
