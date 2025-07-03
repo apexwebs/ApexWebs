@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 export default function AboutPage() {
+  // eslint-disable-next-line react/no-unescaped-entities
   return (
     <section
       style={{
