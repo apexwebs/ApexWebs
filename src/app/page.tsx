@@ -59,7 +59,7 @@ export default function Home() {
       <section id="contact" style={{ background: 'linear-gradient(90deg, #0ea5e9 0%, #00704A 100%)', color: '#fff', padding: '2.5rem 1rem', marginTop: '2rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '2.5rem', alignItems: 'center' }}>
           <div style={{ flex: 1, minWidth: 260 }}>
-            <h2 style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: 10 }}>Let's Build Something Amazing Together</h2>
+            <h2 style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: 10 }}>Let&apos;s Build Something Amazing Together</h2>
             <p style={{ fontSize: '1.08rem', marginBottom: 18 }}>
               Ready to take your business digital? Fill out the form and our team will get in touch within 24 hours.
             </p>
