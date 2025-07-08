@@ -43,8 +43,8 @@ export default function ContactPage() {
     <section
       style={{
         maxWidth: 600,
-        margin: '3rem auto',
-        padding: '2.5rem',
+        margin: '2.5rem auto',
+        padding: '2.5rem 1rem',
         background: 'rgba(255,255,255,0.97)',
         borderRadius: 18,
         boxShadow: '0 4px 24px #00704A22',
@@ -71,6 +71,9 @@ export default function ContactPage() {
           50% { transform: translateY(20px); }
           100% { transform: translateY(0); }
         }
+        @media (max-width: 700px) {
+          .apex-contact-form { padding: 1.2rem !important; }
+        }
       `}</style>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem', zIndex: 1, position: 'relative' }}>
         <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={60} height={60} style={{ borderRadius: '14px', boxShadow: '0 2px 8px #00704A33' }} />
@@ -80,9 +83,9 @@ export default function ContactPage() {
         </div>
       </div>
       {submitted ? (
-        <div style={{ color: 'green', margin: '1rem 0', fontWeight: 600, fontSize: '1.1rem' }}>Thank you for reaching out! We will get back to you soon.</div>
+        <div style={{ color: '#22c55e', fontWeight: 600, margin: '1rem 0', fontSize: '1.1rem' }}>Thank you! We will get back to you soon.</div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate style={{ zIndex: 1, position: 'relative' }}>
+        <form onSubmit={handleSubmit} className="apex-contact-form" style={{ marginTop: 18, background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem 1.2rem', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <label htmlFor="name" style={{ fontWeight: 600, color: '#00704A' }}>Name</label>
           <input
             id="name"
@@ -93,9 +96,9 @@ export default function ContactPage() {
             aria-invalid={!!errors.name}
             aria-describedby="name-error"
             required
-            style={{ width: '100%', marginBottom: 8, padding: '0.7rem', borderRadius: 8, border: '1px solid #eee', fontSize: '1rem' }}
+            style={{ width: '100%', padding: '0.8rem', borderRadius: 6, border: '1.5px solid #e0f7fa', fontSize: '1rem', marginTop: 4 }}
           />
-          {errors.name && <div id="name-error" style={{ color: 'red' }}>{errors.name}</div>}
+          {errors.name && <div id="name-error" style={{ color: 'red', fontSize: 13 }}>{errors.name}</div>}
 
           <label htmlFor="email" style={{ fontWeight: 600, color: '#00704A' }}>Email</label>
           <input
@@ -107,9 +110,9 @@ export default function ContactPage() {
             aria-invalid={!!errors.email}
             aria-describedby="email-error"
             required
-            style={{ width: '100%', marginBottom: 8, padding: '0.7rem', borderRadius: 8, border: '1px solid #eee', fontSize: '1rem' }}
+            style={{ width: '100%', padding: '0.8rem', borderRadius: 6, border: '1.5px solid #e0f7fa', fontSize: '1rem', marginTop: 4 }}
           />
-          {errors.email && <div id="email-error" style={{ color: 'red' }}>{errors.email}</div>}
+          {errors.email && <div id="email-error" style={{ color: 'red', fontSize: 13 }}>{errors.email}</div>}
 
           <label htmlFor="phone" style={{ fontWeight: 600, color: '#00704A' }}>Kenyan Phone</label>
           <input
@@ -122,9 +125,9 @@ export default function ContactPage() {
             aria-describedby="phone-error"
             required
             placeholder="e.g. 0712345678 or +254712345678"
-            style={{ width: '100%', marginBottom: 8, padding: '0.7rem', borderRadius: 8, border: '1px solid #eee', fontSize: '1rem' }}
+            style={{ width: '100%', padding: '0.8rem', borderRadius: 6, border: '1.5px solid #e0f7fa', fontSize: '1rem', marginTop: 4 }}
           />
-          {errors.phone && <div id="phone-error" style={{ color: 'red' }}>{errors.phone}</div>}
+          {errors.phone && <div id="phone-error" style={{ color: 'red', fontSize: 13 }}>{errors.phone}</div>}
 
           <label htmlFor="message" style={{ fontWeight: 600, color: '#00704A' }}>Message</label>
           <textarea
@@ -136,11 +139,11 @@ export default function ContactPage() {
             aria-describedby="message-error"
             required
             rows={4}
-            style={{ width: '100%', marginBottom: 8, padding: '0.7rem', borderRadius: 8, border: '1px solid #eee', fontSize: '1rem' }}
+            style={{ width: '100%', padding: '0.8rem', borderRadius: 6, border: '1.5px solid #e0f7fa', fontSize: '1rem', marginTop: 4 }}
           />
-          {errors.message && <div id="message-error" style={{ color: 'red' }}>{errors.message}</div>}
+          {errors.message && <div id="message-error" style={{ color: 'red', fontSize: 13 }}>{errors.message}</div>}
 
-          <button type="submit" style={{ width: '100%', padding: '0.9rem', background: 'linear-gradient(90deg, #0ea5e9 0%, #00704A 100%)', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 'bold', fontSize: '1.1rem', cursor: 'pointer', marginTop: 8, boxShadow: '0 2px 8px #0ea5e955', transition: 'background 0.2s, box-shadow 0.2s' }}>
+          <button type="submit" style={{ width: '100%', padding: '0.9rem', background: 'linear-gradient(90deg, #0ea5e9 0%, #00704A 100%)', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '1.08rem', cursor: 'pointer', marginTop: 8, boxShadow: '0 2px 8px #0ea5e955', transition: 'background 0.2s, box-shadow 0.2s' }}>
             Send Message
           </button>
         </form>

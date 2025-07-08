@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Check for TypeScript and Next.js errors",
+			"command": "npx next lint && npx next build",
+			"args": [],
+			"problemMatcher": [
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}

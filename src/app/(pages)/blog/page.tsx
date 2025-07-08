@@ -3,18 +3,16 @@ import Image from 'next/image';
 
 export default function BlogPage() {
   return (
-    <section
-      style={{
-        maxWidth: 900,
-        margin: '3rem auto',
-        padding: '2.5rem',
-        background: 'rgba(255,255,255,0.97)',
-        borderRadius: 18,
-        boxShadow: '0 4px 24px #00704A22',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <section style={{
+      maxWidth: 1100,
+      margin: '2.5rem auto',
+      padding: '2.5rem 1rem',
+      background: 'rgba(255,255,255,0.97)',
+      borderRadius: 18,
+      boxShadow: '0 4px 24px #00704A22',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
       {/* Lively animated accent */}
       <div style={{
         position: 'absolute',
@@ -34,13 +32,16 @@ export default function BlogPage() {
           50% { transform: translateY(20px); }
           100% { transform: translateY(0); }
         }
+        @media (max-width: 700px) {
+          .apex-blog-card { flex-direction: column !important; align-items: flex-start !important; }
+        }
       `}</style>
-      <h2 style={{ color: '#00704A', fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-1px' }}>Apex Webs Blog</h2>
-      <p style={{ fontSize: '1.15rem', color: '#222', marginBottom: 18, lineHeight: 1.6 }}>
+      <h2 style={{ color: '#00704A', fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-1px', textAlign: 'center' }}>Apex Webs Blog</h2>
+      <p style={{ fontSize: '1.15rem', color: '#222', marginBottom: 18, lineHeight: 1.6, textAlign: 'center' }}>
         Insights, tips, and stories on web development, digital marketing, and tech for Kenyan businesses.
       </p>
       {/* Sample blog post card */}
-      <div style={{ background: '#f8f8f8', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem', margin: '2rem 0', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+      <div className="apex-blog-card" style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem', margin: '2rem 0', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'box-shadow 0.2s' }}>
         <Image src="/images/ApexLogo.jpg" alt="Sample Blog" width={60} height={60} style={{ borderRadius: 8 }} />
         <div>
           <h3 style={{ color: '#0ea5e9', fontSize: '1.25rem', margin: 0 }}>How to Choose the Right Web Partner in Kenya</h3>
@@ -58,4 +59,4 @@ export default function BlogPage() {
       </section>
     </section>
   );
-} 
+}

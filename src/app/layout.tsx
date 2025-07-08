@@ -31,25 +31,85 @@ export default function RootLayout({
         <title>Apex Webs | Professional Web Solutions in Kenya</title>
         <meta name="description" content="Kenyan web solutions for SMEs, schools, and startups. Custom websites, hosting, and API integrations." />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <header style={{ display: 'flex', alignItems: 'center', padding: '1rem', borderBottom: '1px solid #eee' }}>
-          <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={48} height={48} style={{ borderRadius: '8px', marginRight: '1rem' }} />
-          <div>
-            <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700 }}>Apex Webs</h1>
-            <span style={{ fontSize: '1rem', color: '#00704A' }}><em>Pamoja Tunaweza</em> - Together We Can</span>
+      <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ margin: 0, padding: 0 }}>
+        {/* Fixed Navbar with Logo and Title */}
+        <div style={{ position: 'fixed', top: 18, left: 0, width: '100%', background: 'rgba(0,0,0,0.3)', zIndex: 100, boxShadow: '0 2px 12px #0006', borderBottom: '1.5px solid #222', borderTopLeftRadius: 10, borderTopRightRadius: 10, transition: 'background 0.2s' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.7rem 2rem 0.7rem 1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={38} height={38} style={{ borderRadius: '8px', background: 'transparent' }} />
+              <span style={{ fontWeight: 800, fontSize: '1.6rem', color: '#fff', letterSpacing: '-1px', fontFamily: 'inherit' }}>Apex Webs</span>
+            </div>
+            <nav className="apex-navbar-links" style={{ display: 'flex', alignItems: 'center', gap: '2.2rem' }}>
+              <a href="#hero">Home</a>
+              <a href="#services">Services</a>
+              <a href="#projects">Projects</a>
+              <a href="#about">About</a>
+              <a href="#contact">Contact</a>
+            </nav>
           </div>
-        </header>
-        <nav style={{ display: 'flex', justifyContent: 'center', gap: '2rem', padding: '0.75rem 0', background: '#f8f8f8', borderBottom: '1px solid #eee' }}>
-          <Link href="/" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Home</Link>
-          <Link href="/services" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Services</Link>
-          <Link href="/blog" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Blog</Link>
-          <Link href="/about" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>About</Link>
-          <Link href="/contact" style={{ color: '#00704A', fontWeight: 600, textDecoration: 'none' }}>Contact</Link>
-        </nav>
-        <main>{children}</main>
+        </div>
+        {/* Spacer for fixed navbar */}
+        <div style={{ height: 92 }} />
+        <main style={{ minHeight: '70vh', background: 'linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%)', paddingBottom: '2rem' }}>{children}</main>
+
+        {/* Navbar Link Styles */}
+        <style>{`
+          .apex-navbar-links a {
+            color: #fff !important;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.08rem;
+            transition: color 0.3s, border-bottom 0.3s, background 0.3s;
+            border-bottom: 2.5px solid transparent;
+            border-radius: 2px;
+            padding-bottom: 2px;
+            cursor: pointer;
+          }
+          .apex-navbar-links a:hover {
+            color: #0ea5e9 !important;
+            border-bottom: 2.5px solid #0ea5e9;
+            background: rgba(14,165,233,0.07);
+          }
+          .apex-navbar-links a.active {
+            color: #0ea5e9 !important;
+            border-bottom: 2.5px solid #0ea5e9;
+            background: rgba(14,165,233,0.07);
+          }
+        `}</style>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
           &copy; {new Date().getFullYear()} Apex Webs. All rights reserved.
         </footer>
+
+        {/* NavLink component for active/teal logic */}
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            function setActiveLink() {
+              var links = document.querySelectorAll('.apex-navbar-links a');
+              var fromTop = window.scrollY + 100;
+              var sections = ['hero','services','projects','about','contact'].map(id => document.getElementById(id));
+              let found = false;
+              for (let i = 0; i < sections.length; i++) {
+                if (sections[i] && fromTop >= sections[i].offsetTop) {
+                  links.forEach(l => l.classList.remove('active'));
+                  links[i].classList.add('active');
+                  found = true;
+                }
+              }
+              if (!found) links.forEach(l => l.classList.remove('active'));
+            }
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink();
+            document.querySelectorAll('.apex-navbar-links a').forEach(link => {
+              link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                  e.preventDefault();
+                  document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+              });
+            });
+          })();
+        `}} />
       </body>
     </html>
   );

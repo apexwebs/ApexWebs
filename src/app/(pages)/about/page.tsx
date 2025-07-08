@@ -2,20 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 
 export default function AboutPage() {
-  // eslint-disable-next-line react/no-unescaped-entities
   return (
-    <section
-      style={{
-        maxWidth: 900,
-        margin: '3rem auto',
-        padding: '2.5rem',
-        background: 'rgba(255,255,255,0.97)',
-        borderRadius: 18,
-        boxShadow: '0 4px 24px #00704A22',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <section style={{
+      maxWidth: 1100,
+      margin: '2.5rem auto',
+      padding: '2.5rem 1rem',
+      background: 'rgba(255,255,255,0.97)',
+      borderRadius: 18,
+      boxShadow: '0 4px 24px #00704A22',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
       {/* Lively animated accent */}
       <div style={{
         position: 'absolute',
@@ -35,9 +32,12 @@ export default function AboutPage() {
           50% { transform: translateY(20px); }
           100% { transform: translateY(0); }
         }
+        @media (max-width: 700px) {
+          .apex-about-flex { flex-direction: column !important; gap: 1.5rem !important; }
+        }
       `}</style>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem', zIndex: 1, position: 'relative' }}>
-        <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={70} height={70} style={{ borderRadius: '14px', boxShadow: '0 2px 8px #00704A33' }} />
+      <div className="apex-about-flex" style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem', zIndex: 1, position: 'relative', flexWrap: 'wrap' }}>
+        <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={90} height={90} style={{ borderRadius: '14px', boxShadow: '0 2px 8px #00704A33' }} />
         <div>
           <h2 style={{ margin: 0, fontSize: '2.2rem', color: '#00704A', fontWeight: 800, letterSpacing: '-1px' }}>About Apex Webs</h2>
           <p style={{ margin: 0, fontWeight: 600, color: '#0ea5e9', fontSize: '1.05rem' }}>Empowering Kenya&apos;s Digital Future</p>
@@ -56,4 +56,4 @@ export default function AboutPage() {
       </p>
     </section>
   );
-} 
+}
