@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -65,7 +64,7 @@ export default function Home() {
               Ready to take your business digital? Fill out the form and our team will get in touch within 24 hours.
             </p>
             <ul style={{ color: '#e0f7fa', fontSize: '1.05rem', marginBottom: 0 }}>
-              <li>Custom web & mobile solutions</li>
+              <li>Custom web &amp; mobile solutions</li>
               <li>Kenyan market expertise</li>
               <li>Fast, friendly support</li>
             </ul>
@@ -97,44 +96,6 @@ function ServiceCard({ icon, title, desc }: { icon: string; title: string; desc:
       </div>
       <h3 style={{ color: '#00704A', fontWeight: 700, fontSize: '1.15rem', marginBottom: 8 }}>{title}</h3>
       <p style={{ color: '#444', fontSize: '1.02rem', margin: 0 }}>{desc}</p>
-    </div>
-  );
-}
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem 1.2rem', minWidth: 120, flex: 1, textAlign: 'center' }}>
-      <div style={{ color: '#0ea5e9', fontWeight: 800, fontSize: '2rem', marginBottom: 4 }}>{value}</div>
-      <div style={{ color: '#00704A', fontWeight: 600, fontSize: '1.08rem' }}>{label}</div>
-    </div>
-  );
-}
-
-function TestimonialCard({ name, text }: { name: string; text: string }) {
-  return (
-    <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem 1.2rem', fontStyle: 'italic', color: '#222' }}>
-      <div style={{ marginBottom: 8 }}>&ldquo;{text}&rdquo;</div>
-      <div style={{ color: '#0ea5e9', fontWeight: 700, fontSize: '1.02rem', marginTop: 8 }}>{name}</div>
-    </div>
-  );
-}
-
-function FAQ() {
-  const faqs = [
-    { q: 'How long does it take to build a website?', a: 'Most projects are completed in 2-4 weeks, depending on complexity.' },
-    { q: 'Do you support mobile and e-commerce solutions?', a: 'Yes! We build mobile apps and e-commerce platforms tailored for Kenya.' },
-    { q: 'What platforms and technologies do you use?', a: 'We use Next.js, React, and modern cloud hosting for speed and reliability.' },
-    { q: 'Do you provide ongoing support and updates?', a: 'Absolutely. We offer maintenance and support packages for all clients.' },
-    { q: 'Are your costs and terms suitable for Kenya?', a: 'Yes, our pricing and contracts are designed for the Kenyan market.' },
-  ];
-  return (
-    <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #00704A11', padding: '1.5rem 1.2rem' }}>
-      {faqs.map((faq, idx) => (
-        <details key={idx} style={{ marginBottom: 12 }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 700, color: '#00704A', fontSize: '1.08rem', outline: 'none' }}>{faq.q}</summary>
-          <div style={{ color: '#444', marginTop: 6, fontSize: '1.02rem' }}>{faq.a}</div>
-        </details>
-      ))}
     </div>
   );
 }
