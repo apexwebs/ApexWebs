@@ -52,7 +52,7 @@ export default function AboutPage() {
         <li><strong>Values:</strong> Innovation, Local Understanding, Affordability, Customer-Centricity, Community Empowerment.</li>
       </ul>
       <p style={{ color: '#00704A', fontSize: '1.08rem', fontWeight: 500, textAlign: 'center', marginTop: 18 }}>
-        Founded in Nairobi. <strong>Let&apos;s bridge the digital gap together!</strong>
+        Founded in Mombasa. <strong>Let&apos;s bridge the digital gap together!</strong>
       </p>
     </section>
   );

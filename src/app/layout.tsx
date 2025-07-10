@@ -33,7 +33,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ margin: 0, padding: 0 }}>
         {/* Fixed Navbar with Logo and Title */}
-        <div style={{ position: 'fixed', top: 18, left: 0, width: '100%', background: 'rgba(0,0,0,0.3)', zIndex: 100, boxShadow: '0 2px 12px #0006', borderBottom: '1.5px solid #222', borderTopLeftRadius: 10, borderTopRightRadius: 10, transition: 'background 0.2s' }}>
+        <div style={{ position: 'fixed', top: 18, left: 0, width: '100%', background: 'rgba(0,0,0,0.4)', zIndex: 100, boxShadow: '0 2px 12px #0006', borderBottom: '1.5px solid #222', borderTopLeftRadius: 10, borderTopRightRadius: 10, transition: 'background 0.2s' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.7rem 2rem 0.7rem 1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={38} height={38} style={{ borderRadius: '8px', background: 'transparent' }} />
@@ -48,8 +48,7 @@ export default function RootLayout({
             </nav>
           </div>
         </div>
-        {/* Spacer for fixed navbar */}
-        <div style={{ height: 92 }} />
+        {/* Spacer for fixed navbar - removed to eliminate black gap above hero */}
         <main style={{ minHeight: '70vh', background: 'linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%)', paddingBottom: '2rem' }}>{children}</main>
 
         {/* Navbar Link Styles */}
@@ -74,6 +73,16 @@ export default function RootLayout({
             color: #0ea5e9 !important;
             border-bottom: 2.5px solid #0ea5e9;
             background: rgba(14,165,233,0.07);
+          }
+          .hero-btn {
+            border: 2px solid transparent;
+            transition: border 0.2s, color 0.2s, background 0.2s;
+          }
+          .hero-btn:hover {
+            border: 2px solid #e53935 !important;
+            color: #e53935 !important;
+            background: #fff !important;
+            box-shadow: 0 2px 16px #e5393555;
           }
         `}</style>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
