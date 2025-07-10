@@ -107,53 +107,7 @@ export default function Home() {
 }
 
 // Typewriter animation for hero headline
-function TypewriterHeadline({ text }: { text: string }) {
-  const [displayed, setDisplayed] = useState("");
-  useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayed((prev) => prev + text[i]);
-      i++;
-      if (i >= text.length) clearInterval(interval);
-    }, 38); // speed in ms per character
-    return () => clearInterval(interval);
-  }, [text]);
-  return (
-    <h1
-      style={{
-        fontSize: "2.5rem",
-        fontWeight: 800,
-        marginBottom: 12,
-        letterSpacing: "-1px",
-        minHeight: "3.2rem",
-        fontFamily: "inherit",
-        whiteSpace: "pre-line",
-        textShadow: "0 2px 12px #00704A22",
-        transition: "color 0.3s"
-      }}
-      aria-label={text}
-    >
-      {displayed}
-      <span style={{
-        display: "inline-block",
-        width: 18,
-        background: "#fff",
-        height: "2.5rem",
-        marginLeft: 2,
-        opacity: 0.7,
-        animation: "blink 1s steps(1) infinite"
-      }}>
-        &nbsp;
-      </span>
-      <style>{`
-        @keyframes blink {
-          0%, 50% { opacity: 0.7; }
-          51%, 100% { opacity: 0; }
-        }
-      `}</style>
-    </h1>
-  );
-}
+// ...existing code...
 
 function ProjectCard({ title, status, desc }: { title: string; status: string; desc: string }) {
   const color = status === 'Completed' ? '#22c55e' : status === 'In Progress' ? '#eab308' : '#0ea5e9';
