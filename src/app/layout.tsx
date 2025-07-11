@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Image from 'next/image';
@@ -33,150 +34,14 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ margin: 0, padding: 0 }}>
         {/* Fixed Navbar with Logo and Title */}
-        <div style={{ position: 'fixed', top: 18, left: 0, width: '100%', background: 'rgba(0,0,0,0.4)', zIndex: 100, boxShadow: '0 2px 12px #0006', borderBottom: '1.5px solid #222', borderTopLeftRadius: 10, borderTopRightRadius: 10, transition: 'background 0.2s' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.7rem 2rem 0.7rem 1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={38} height={38} style={{ borderRadius: '8px', background: 'transparent' }} />
-              <span style={{ fontWeight: 800, fontSize: '1.6rem', color: '#fff', letterSpacing: '-1px', fontFamily: 'inherit' }}>Apex Webs</span>
-            </div>
-            {/* Hamburger menu for mobile */}
-            <div className="apex-navbar-hamburger" id="apex-navbar-hamburger" style={{ display: 'none', cursor: 'pointer', marginLeft: 'auto', zIndex: 1001 }}>
-              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
-              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
-              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
-            </div>
-        {/* Hamburger menu JS for mobile interactivity */}
-        {/* Hamburger menu JS for mobile interactivity - runs only on client */}
-        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
-          if (typeof window !== 'undefined') {
-            (function() {
-              var hamburger = document.getElementById('apex-navbar-hamburger');
-              var mobileMenu = document.getElementById('apex-navbar-mobile-menu');
-              if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', function() {
-                  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
-                });
-              }
-            })();
-          }
-        `}} />
-            <nav className="apex-navbar-links" style={{ display: 'flex', alignItems: 'center', gap: '2.2rem' }}>
-              <a href="#hero">Home</a>
-              <a href="#about">About</a>
-              <a href="#services">Services</a>
-              <a href="#projects">Projects</a>
-              <a href="#contact">Contact</a>
-            </nav>
-            {/* Mobile menu (hidden by default) */}
-            <nav id="apex-navbar-mobile-menu" className="apex-navbar-mobile-menu" style={{
-              display: 'none',
-              position: 'absolute',
-              top: 60,
-              right: 18,
-              background: 'rgba(0,0,0,0.92)',
-              borderRadius: 12,
-              boxShadow: '0 4px 24px #2228',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              padding: '1.2rem 1.5rem',
-              zIndex: 1000,
-              minWidth: 160,
-            }}>
-              <a href="#hero" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Home</a>
-              <a href="#about" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>About</a>
-              <a href="#services" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Services</a>
-              <a href="#projects" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Projects</a>
-              <a href="#contact" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 0 }}>Contact</a>
-            </nav>
-        {/* Responsive styles for navbar and hamburger */}
-        <style>{`
-          @media (max-width: 900px) {
-            .apex-navbar-links {
-              display: none !important;
-            }
-            .apex-navbar-hamburger {
-              display: block !important;
-            }
-          }
-          @media (min-width: 901px) {
-            .apex-navbar-mobile-menu {
-              display: none !important;
-            }
-          }
-        `}</style>
-          </div>
-        </div>
+        {/* Fixed Navbar with Logo and Title */}
+        {/** Use dynamic import for Navbar as a Client Component */}
+        {React.createElement(require('../components/Navbar').default)}
         {/* Spacer for fixed navbar - removed to eliminate black gap above hero */}
         <main style={{ minHeight: '70vh', background: 'linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%)', paddingBottom: '2rem' }}>{children}</main>
-
-        {/* Navbar Link Styles */}
-        <style>{`
-          .apex-navbar-links a {
-            color: #fff !important;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.08rem;
-            transition: color 0.3s, border-bottom 0.3s, background 0.3s;
-            border-bottom: 2.5px solid transparent;
-            border-radius: 2px;
-            padding-bottom: 2px;
-            cursor: pointer;
-          }
-          .apex-navbar-links a:hover {
-            color: #0ea5e9 !important;
-            border-bottom: 2.5px solid #0ea5e9;
-            background: rgba(14,165,233,0.07);
-          }
-          .apex-navbar-links a.active {
-            color: #0ea5e9 !important;
-            border-bottom: 2.5px solid #0ea5e9;
-            background: rgba(14,165,233,0.07);
-          }
-          .hero-btn {
-            border: 2px solid transparent;
-            transition: border 0.2s, color 0.2s, background 0.2s;
-          }
-          .hero-btn:hover {
-            border: 2px solid #e53935 !important;
-            color: #e53935 !important;
-            background: #fff !important;
-            box-shadow: 0 2px 16px #e5393555;
-          }
-        `}</style>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
           &copy; {new Date().getFullYear()} Apex Webs. All rights reserved.
         </footer>
-
-        {/* NavLink component for active/teal logic */}
-        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            function setActiveLink() {
-              var links = document.querySelectorAll('.apex-navbar-links a');
-              var fromTop = window.scrollY + 100;
-              var sections = ['hero','services','projects','about','contact'].map(id => document.getElementById(id));
-              let found = false;
-              for (let i = 0; i < sections.length; i++) {
-                if (sections[i] && fromTop >= sections[i].offsetTop) {
-                  links.forEach(l => l.classList.remove('active'));
-                  links[i].classList.add('active');
-                  found = true;
-                }
-              }
-              if (!found) links.forEach(l => l.classList.remove('active'));
-            }
-            window.addEventListener('scroll', setActiveLink);
-            setActiveLink();
-            document.querySelectorAll('.apex-navbar-links a').forEach(link => {
-              link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                  e.preventDefault();
-                  document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-                }
-              });
-            });
-          })();
-        `}} />
       </body>
     </html>
   );
