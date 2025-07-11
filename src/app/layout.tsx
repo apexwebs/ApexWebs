@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Image from 'next/image';
+import Navbar from '../components/Navbar';
 // import Link from 'next/link';
 
 const geistSans = Geist({
@@ -36,7 +36,7 @@ export default function RootLayout({
         {/* Fixed Navbar with Logo and Title */}
         {/* Fixed Navbar with Logo and Title */}
         {/** Use dynamic import for Navbar as a Client Component */}
-        {React.createElement(require('../components/Navbar').default)}
+        <Navbar />
         {/* Spacer for fixed navbar - removed to eliminate black gap above hero */}
         <main style={{ minHeight: '70vh', background: 'linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%)', paddingBottom: '2rem' }}>{children}</main>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
