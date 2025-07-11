@@ -41,9 +41,9 @@ export default function RootLayout({
             </div>
             <nav className="apex-navbar-links" style={{ display: 'flex', alignItems: 'center', gap: '2.2rem' }}>
               <a href="#hero">Home</a>
+              <a href="#about">About</a>
               <a href="#services">Services</a>
               <a href="#projects">Projects</a>
-              <a href="#about">About</a>
               <a href="#contact">Contact</a>
             </nav>
           </div>
