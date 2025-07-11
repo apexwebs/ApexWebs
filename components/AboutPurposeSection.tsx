@@ -18,7 +18,7 @@ export default function AboutPurposeSection() {
         </div>
         <div className="about-purpose-card">
           <h4 className="about-purpose-card-title">Our Vision</h4>
-          <p className="about-purpose-card-desc">Be the catalyst for a digitally empowered, globally competitive Kenyan business environment. We strive to position Kenya at the forefront of Africa's digital transformation through accessible, powerful web technologies.</p>
+          <p className="about-purpose-card-desc">Be the catalyst for a digitally empowered, globally competitive Kenyan business environment. We strive to position Kenya at the forefront of Africa&apos;s digital transformation through accessible, powerful web technologies.</p>
         </div>
       </div>
     </section>
