@@ -39,6 +39,27 @@ export default function RootLayout({
               <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={38} height={38} style={{ borderRadius: '8px', background: 'transparent' }} />
               <span style={{ fontWeight: 800, fontSize: '1.6rem', color: '#fff', letterSpacing: '-1px', fontFamily: 'inherit' }}>Apex Webs</span>
             </div>
+            {/* Hamburger menu for mobile */}
+            <div className="apex-navbar-hamburger" id="apex-navbar-hamburger" style={{ display: 'none', cursor: 'pointer', marginLeft: 'auto', zIndex: 1001 }}>
+              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
+              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
+              <span style={{ display: 'block', width: 28, height: 4, background: '#fff', borderRadius: 2, margin: '6px 0' }}></span>
+            </div>
+        {/* Hamburger menu JS for mobile interactivity */}
+        {/* Hamburger menu JS for mobile interactivity - runs only on client */}
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
+          if (typeof window !== 'undefined') {
+            (function() {
+              var hamburger = document.getElementById('apex-navbar-hamburger');
+              var mobileMenu = document.getElementById('apex-navbar-mobile-menu');
+              if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+                });
+              }
+            })();
+          }
+        `}} />
             <nav className="apex-navbar-links" style={{ display: 'flex', alignItems: 'center', gap: '2.2rem' }}>
               <a href="#hero">Home</a>
               <a href="#about">About</a>
@@ -46,6 +67,43 @@ export default function RootLayout({
               <a href="#projects">Projects</a>
               <a href="#contact">Contact</a>
             </nav>
+            {/* Mobile menu (hidden by default) */}
+            <nav id="apex-navbar-mobile-menu" className="apex-navbar-mobile-menu" style={{
+              display: 'none',
+              position: 'absolute',
+              top: 60,
+              right: 18,
+              background: 'rgba(0,0,0,0.92)',
+              borderRadius: 12,
+              boxShadow: '0 4px 24px #2228',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              padding: '1.2rem 1.5rem',
+              zIndex: 1000,
+              minWidth: 160,
+            }}>
+              <a href="#hero" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Home</a>
+              <a href="#about" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>About</a>
+              <a href="#services" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Services</a>
+              <a href="#projects" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 12 }}>Projects</a>
+              <a href="#contact" style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1.08rem', marginBottom: 0 }}>Contact</a>
+            </nav>
+        {/* Responsive styles for navbar and hamburger */}
+        <style>{`
+          @media (max-width: 900px) {
+            .apex-navbar-links {
+              display: none !important;
+            }
+            .apex-navbar-hamburger {
+              display: block !important;
+            }
+          }
+          @media (min-width: 901px) {
+            .apex-navbar-mobile-menu {
+              display: none !important;
+            }
+          }
+        `}</style>
           </div>
         </div>
         {/* Spacer for fixed navbar - removed to eliminate black gap above hero */}

@@ -30,17 +30,59 @@ export default function Home() {
           <p style={{ fontSize: '1.18rem', margin: '32px 0 36px 0', fontWeight: 500, color: '#fff', textShadow: '0 2px 8px #2228' }}>
             Apex Webs provides cutting-edge web applications, development services, and hosting solutions designed specifically for the unique challenges and opportunities in the Kenyan market.
           </p>
-          <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#services" className="hero-btn" style={{ background: 'linear-gradient(90deg, #009688 0%, #43e97b 100%)', color: '#fff', padding: '1rem 2.5rem', borderRadius: 32, textDecoration: 'none', fontWeight: 700, fontSize: '1.15rem', boxShadow: '0 2px 8px #0ea5e955', transition: 'background 0.2s, box-shadow 0.2s', marginBottom: 8 }}>
+          <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap', marginTop: 8 }}>
+            <a
+              href="#services"
+              className="hero-btn"
+              style={{
+                background: 'linear-gradient(90deg, #009688 0%, #43e97b 100%)',
+                color: '#fff',
+                padding: '0.7rem 1.6rem',
+                borderRadius: 28,
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '1rem',
+                boxShadow: '0 4px 18px #0ea5e955, 0 1.5px 0 #fff inset', // raised effect
+                border: 'none',
+                outline: 'none',
+                marginBottom: 8,
+                transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
+                willChange: 'transform',
+              }}
+              onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)')}
+              onMouseOut={e => (e.currentTarget.style.transform = 'none')}
+            >
               Explore Our Solutions
             </a>
-            <a href="#contact" className="hero-btn" style={{ background: 'linear-gradient(90deg, #00704A 0%, #0ea5e9 100%)', color: '#fff', padding: '1rem 2.5rem', borderRadius: 32, textDecoration: 'none', fontWeight: 700, fontSize: '1.15rem', boxShadow: '0 2px 8px #0ea5e955', transition: 'background 0.2s, box-shadow 0.2s', marginBottom: 8 }}>
+            <a
+              href="#contact"
+              className="hero-btn"
+              style={{
+                background: 'linear-gradient(90deg, #00704A 0%, #0ea5e9 100%)',
+                color: '#fff',
+                padding: '0.7rem 1.6rem',
+                borderRadius: 28,
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '1rem',
+                boxShadow: '0 4px 18px #0ea5e955, 0 1.5px 0 #fff inset', // raised effect
+                border: 'none',
+                outline: 'none',
+                marginBottom: 8,
+                transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
+                willChange: 'transform',
+              }}
+              onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)')}
+              onMouseOut={e => (e.currentTarget.style.transform = 'none')}
+            >
               Request Consultation
             </a>
           </div>
         </div>
       </section>
-      <AboutPurposeSection />
+      <section id="about">
+        <AboutPurposeSection />
+      </section>
       <ServicesSection />
       {/* CONTACT SECTION */}
       <section id="contact" style={{ background: 'linear-gradient(90deg, #0ea5e9 0%, #00704A 100%)', color: '#fff', padding: '2.5rem 1rem', marginTop: '2rem' }}>
