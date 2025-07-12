@@ -22,7 +22,6 @@ export default function ApiIntegrationServicesPage() {
       </section>
       <section className="included-section">
       {/* eslint-disable-next-line react/no-unescaped-entities */}
-
         <h2 className="section-title">What's Included</h2>
         <div className="features-list">
           <div className="included-card">
