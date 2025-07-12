@@ -44,7 +44,7 @@ const services = [
 		desc: "Offline-capable applications that work seamlessly even in areas with intermittent connectivity. Perfect for rural businesses and mobile users.",
 	},
 	{
-		href: '/services/api-integration',
+		href: '/services/api-integration-services',
 		icon: (
 			<svg width="56" height="56" fill="none" viewBox="0 0 56 56">
 				<rect width="56" height="56" rx="12" fill="#f4f8fb"/>
@@ -54,7 +54,7 @@ const services = [
 				<rect x="30" y="14" width="2" height="6" rx="1" fill="#19977a"/>
 			</svg>
 		),
-		title: <>API Integrations</>,
+		title: <>API Integration Services</>,
 		desc: "Seamless integration with M-Pesa, iTax, e-Citizen and other essential Kenyan platforms. Connect your systems to the services that matter.",
 	},
 	{
@@ -70,7 +70,7 @@ const services = [
 		desc: "Increase your online visibility in Kenya and beyond. Our strategies are tailored for the African digital landscape.",
 	},
 	{
-		href: '/services/cybersecurity',
+		href: '/services/cybersecurity-solutions',
 		icon: (
 			<svg width="56" height="56" fill="none" viewBox="0 0 56 56">
 				<rect width="56" height="56" rx="12" fill="#f4f8fb"/>
