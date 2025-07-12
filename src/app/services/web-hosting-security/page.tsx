@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import '../custom-web-applications/customWebAppPage.css';
 
 const whyChooseUs = [
