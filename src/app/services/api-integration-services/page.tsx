@@ -21,7 +21,7 @@ export default function ApiIntegrationServicesPage() {
         </div>
       </section>
       <section className="included-section">
-        <h2 className="section-title">What's Included</h2>
+        <h2 className="section-title">What &apos s Included</h2>
         <div className="features-list">
           <div className="included-card">
             <span className="feature-title">M-PESA & Bank Integration</span>

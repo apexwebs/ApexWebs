@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+{/*import { usePathname, useRouter } from "next/navigation";*/}
 
 const NAV_LINKS = [
   { href: "#hero", label: "Home" },

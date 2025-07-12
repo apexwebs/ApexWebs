@@ -25,7 +25,7 @@ export default function ProgressiveWebAppsPage() {
         <p className="section-desc">
           This service will be available in Phase 2. Register your interest below!
         </p>
-        <h2 className="section-title">What's Included</h2>
+        <h2 className="section-title">What &apos s Included</h2>
         <div className="features-list">
           <div className="included-card">
             <span className="feature-title">Works Offline</span>
