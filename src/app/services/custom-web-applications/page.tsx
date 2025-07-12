@@ -73,7 +73,7 @@ export default function CustomWebAppPage() {
       </section>
 
       <section className="included-section">
-        <h2 className="section-title">What's Included</h2>
+        <h2 className="section-title">What&apos;s Included</h2>
         <p className="section-desc">
           Comprehensive web development services designed to meet your business needs
         </p>

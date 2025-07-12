@@ -73,7 +73,7 @@ export default function WebHostingSecurityPage() {
       </section>
 
       <section className="included-section">
-        <h2 className="section-title">What's Included</h2>
+        <h2 className="section-title">What&apos;s Included</h2>
         <p className="section-desc">
           All-in-one hosting and security: speed, backups, SSL, and more.
         </p>
