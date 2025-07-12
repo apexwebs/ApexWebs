@@ -1,7 +1,39 @@
 # Apex Webs - Cursor AI Development Rules
 *Comprehensive guidelines for building a professional, SEO-optimized Kenyan web solutions platform*
 
-## 🎯 Project Overview & Context
+## � Unified Color Theme (2025)
+
+### Main Colors
+- **Teal Gradient (Header/Card Background):**
+  - Start: #1DB7A4
+  - End: #0F7C91
+- **Accent Red (Top border glow, alerts, CTA hover):** #E94E4E
+- **White (Card/Section Background):** #FFFFFF
+
+### Text Colors
+- **Title Text:** #1E9E8A (deep teal green)
+- **Body Text:** #4F4F4F (dark gray)
+
+### CSS Variables
+```css
+:root {
+  --primary-gradient-start: #1DB7A4;
+  --primary-gradient-end: #0F7C91;
+  --accent-red: #E94E4E;
+  --background-white: #FFFFFF;
+  --text-title: #1E9E8A;
+  --text-body: #4F4F4F;
+}
+```
+
+#### Usage Tips
+- Use the gradient for navbars, headers, and CTA buttons.
+- Accent red for hover states or alerts.
+- White for cards or background sections.
+- Dark gray for paragraph text and teal green for headings.
+- The theme should appear across all pages and components for a unified brand experience.
+
+## �🎯 Project Overview & Context
 
 ### Company Identity
 - **Company**: Apex Webs - Kenyan web solutions startup

@@ -3,7 +3,7 @@ import '../custom-web-applications/customWebAppPage.css';
 
 export default function ProgressiveWebAppsPage() {
   return (
-    <main className="custom-web-app-page">
+      <main className="custom-web-app-page" style={{ background: 'var(--background-white)', color: 'var(--text-body)' }}>
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-icon">
@@ -25,6 +25,21 @@ export default function ProgressiveWebAppsPage() {
         <p className="section-desc">
           This service will be available in Phase 2. Register your interest below!
         </p>
+        <h2 className="section-title">What's Included</h2>
+        <div className="features-list">
+          <div className="included-card">
+            <span className="feature-title">Works Offline</span>
+            <span className="feature-desc">Your app stays functional even without internet—ideal for rural areas and on-the-go users.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Mobile-First Experience</span>
+            <span className="feature-desc">Fast, responsive design for smartphones and tablets, ensuring seamless user journeys everywhere.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Smart Push Notifications</span>
+            <span className="feature-desc">Send timely updates and offers to keep your audience engaged and coming back.</span>
+          </div>
+        </div>
       </section>
       <section className="contact-section">
         <h2 className="section-title">Early Interest Registration</h2>

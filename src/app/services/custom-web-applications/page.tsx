@@ -78,41 +78,31 @@ export default function CustomWebAppPage() {
           Comprehensive web development services designed to meet your business needs
         </p>
         <div className="included-cards">
-          {[
-            { title: 'Responsive Design', desc: 'Mobile-first websites that look perfect on all devices.' },
-            { title: 'Fast Performance', desc: 'Optimized for speed and best coding practices.' },
-            { title: 'SEO Optimized', desc: 'Built with search engine optimization in mind.' },
-            { title: 'Custom Design', desc: 'Unique designs tailored to your brand.' },
-            { title: 'Secure & Safe', desc: 'Security best practices implemented.' },
-            { title: 'Analytics Ready', desc: 'Google Analytics integration to track success.' },
-          ].map((item, i) => (
-            <div className="included-card" key={i}>
-              <div className="included-icon" />
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="process-section">
-        <h2 className="section-title">Our Development Process</h2>
-        <div className="process-steps">
-          { [
-            { step: '1', title: 'Discovery & Planning', desc: 'We understand your business goals, target audience, and project requirements through detailed consultation.' },
-            { step: '2', title: 'Design & Wireframing', desc: 'Create visual mockups and wireframes that align with your brand and user experience goals.' },
-            { step: '3', title: 'Development', desc: 'Build your website using modern technologies, ensuring responsiveness and optimal performance.' },
-            { step: '4', title: 'Testing & Launch', desc: 'Thorough testing across devices and browsers, followed by deployment and go-live support.' },
-            { step: '5', title: 'Ongoing Support', desc: 'Continued maintenance, updates, and support to keep your website secure and up-to-date.' }
-          ].map((item, i) => (
-            <div className="process-step" key={i}>
-              <div className="process-step-number">{item.step}</div>
-              <div>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
-              </div>
-            </div>
-          ))}
+          <div className="included-card">
+            <span className="feature-popular">Most Popular</span>
+            <h3>Responsive Design</h3>
+            <p>Mobile-first websites that look perfect and perform flawlessly on every device.</p>
+          </div>
+          <div className="included-card">
+            <h3>Fast Performance</h3>
+            <p>Lightning-fast load times and optimized code for the best user experience.</p>
+          </div>
+          <div className="included-card">
+            <h3>SEO Optimized</h3>
+            <p>Built with search engine optimization in mind to help your business get found online.</p>
+          </div>
+          <div className="included-card">
+            <h3>Custom Design</h3>
+            <p>Unique, creative designs tailored to your brand and business goals.</p>
+          </div>
+          <div className="included-card">
+            <h3>Secure & Safe</h3>
+            <p>Industry-standard security best practices to protect your data and users.</p>
+          </div>
+          <div className="included-card">
+            <h3>Analytics Ready</h3>
+            <p>Google Analytics integration for actionable insights and growth tracking.</p>
+          </div>
         </div>
       </section>
 

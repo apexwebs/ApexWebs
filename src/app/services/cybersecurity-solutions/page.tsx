@@ -3,7 +3,7 @@ import '../custom-web-applications/customWebAppPage.css';
 
 export default function CybersecuritySolutionsPage() {
   return (
-    <main className="custom-web-app-page">
+      <main className="custom-web-app-page" style={{ background: 'var(--background-white)', color: 'var(--text-body)' }}>
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-icon">
@@ -21,10 +21,21 @@ export default function CybersecuritySolutionsPage() {
         </div>
       </section>
       <section className="included-section">
-        <h2 className="section-title">Enterprise Solutions Coming Soon</h2>
-        <p className="section-desc">
-          Advanced cybersecurity services will be available soon. Contact us for enterprise inquiries.
-        </p>
+      <h2 className="section-title">What's Included</h2>
+        <div className="features-list">
+          <div className="included-card">
+            <span className="feature-title">Real-Time Threat Detection</span>
+            <span className="feature-desc">AI-powered monitoring to spot and block cyber threats before they impact your business.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Advanced Data Encryption</span>
+            <span className="feature-desc">Keep sensitive information safe with military-grade encryption and secure data storage.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Comprehensive Security Audits</span>
+            <span className="feature-desc">Regular reviews and compliance checks to ensure your systems meet the highest standards.</span>
+          </div>
+      </div>
       </section>
       <section className="contact-section">
         <h2 className="section-title">Enterprise Inquiry</h2>

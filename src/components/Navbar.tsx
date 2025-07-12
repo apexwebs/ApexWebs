@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "#hero", label: "Home" },
@@ -13,6 +14,8 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,9 +40,32 @@ export default function Navbar() {
     e.preventDefault();
     setMobileMenuOpen(false);
     setActiveIdx(idx);
+    // Always go to home page for Home link
+    if (href === "#hero") {
+      if (pathname !== "/") {
+        router.push("/");
+        return;
+      }
+      // If already on home, scroll to top
+      const el = document.getElementById("hero");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.location.hash = href;
+      }
+      return;
+    }
+    // For other links, go to /#section if not on home
+    if (pathname !== "/") {
+      router.push(`/#${href.replace('#', '')}`);
+      return;
+    }
+    // If on home page, scroll smoothly
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.hash = href;
     }
   };
 

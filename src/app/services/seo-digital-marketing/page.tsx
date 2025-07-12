@@ -3,7 +3,7 @@ import '../custom-web-applications/customWebAppPage.css';
 
 export default function SeoDigitalMarketingPage() {
   return (
-    <main className="custom-web-app-page">
+      <main className="custom-web-app-page" style={{ background: 'var(--background-white)', color: 'var(--text-body)' }}>
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-icon">
@@ -21,10 +21,21 @@ export default function SeoDigitalMarketingPage() {
         </div>
       </section>
       <section className="included-section">
-        <h2 className="section-title">Launching Soon</h2>
-        <p className="section-desc">
-          This service will launch in Q3 2025. Sign up for updates below!
-        </p>
+        <h2 className="section-title">What's Included</h2>
+        <div className="features-list">
+          <div className="included-card">
+            <span className="feature-title">SEO Optimization</span>
+            <span className="feature-desc">Get your business found on Google and other search engines with expert keyword targeting and on-page SEO.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Digital Marketing Campaigns</span>
+            <span className="feature-desc">Reach your ideal customers with creative, data-driven campaigns across social media, email, and more.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Analytics & Performance Reporting</span>
+            <span className="feature-desc">Track every click, conversion, and ROI with clear, actionable reports to grow your business.</span>
+          </div>
+        </div>
       </section>
       <section className="contact-section">
         <h2 className="section-title">Newsletter Signup</h2>

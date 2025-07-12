@@ -54,7 +54,7 @@ const testimonials = [
 
 export default function WebHostingSecurityPage() {
   return (
-    <main className="custom-web-app-page">
+      <main className="custom-web-app-page" style={{ background: 'var(--background-white)', color: 'var(--text-body)' }}>
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-icon">
@@ -77,21 +77,19 @@ export default function WebHostingSecurityPage() {
         <p className="section-desc">
           All-in-one hosting and security: speed, backups, SSL, and more.
         </p>
-        <div className="included-cards">
-          {[
-            { title: 'Fast Servers', desc: 'Quick load times for all visitors.' },
-            { title: 'SSL Certificates', desc: 'Secure your site and build trust.' },
-            { title: 'Daily Backups', desc: 'Automatic protection for your data.' },
-            { title: 'Malware Protection', desc: 'Keep your site safe from threats.' },
-            { title: 'Email Hosting', desc: 'Professional email addresses for your business.' },
-            { title: '24/7 Monitoring', desc: 'We keep an eye on your site, always.' },
-          ].map((item, i) => (
-            <div className="included-card" key={i}>
-              <div className="included-icon" />
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
-          ))}
+        <div className="features-list">
+          <div className="included-card">
+            <span className="feature-title">SSL Security</span>
+            <span className="feature-desc">Build trust with your customers using robust SSL certificates and secure connections for every site visitor.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Automated Daily Backups</span>
+            <span className="feature-desc">Never lose data—your website is backed up every day, with easy restore options for peace of mind.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">24/7 Uptime Monitoring</span>
+            <span className="feature-desc">We keep a constant watch on your site, ensuring maximum uptime and instant alerts for any issues.</span>
+          </div>
         </div>
       </section>
 

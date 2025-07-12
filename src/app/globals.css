@@ -1,6 +1,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-gradient-start: #1DB7A4;
+  --primary-gradient-end: #0F7C91;
+  --accent-red: #E94E4E;
+  --background-white: #FFFFFF;
+  --text-title: #1E9E8A;
+  --text-body: #4F4F4F;
 }
 
 @media (prefers-color-scheme: dark) {

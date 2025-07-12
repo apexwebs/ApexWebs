@@ -3,7 +3,7 @@ import '../custom-web-applications/customWebAppPage.css';
 
 export default function ApiIntegrationServicesPage() {
   return (
-    <main className="custom-web-app-page">
+    <main className="custom-web-app-page" style={{ background: 'var(--background-white)', color: 'var(--text-body)' }}>
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-icon">
@@ -21,10 +21,21 @@ export default function ApiIntegrationServicesPage() {
         </div>
       </section>
       <section className="included-section">
-        <h2 className="section-title">Coming Soon</h2>
-        <p className="section-desc">
-          This service will be available soon. Register your interest below!
-        </p>
+        <h2 className="section-title">What's Included</h2>
+        <div className="features-list">
+          <div className="included-card">
+            <span className="feature-title">M-PESA & Bank Integration</span>
+            <span className="feature-desc">Connect your business to Kenya’s leading payment platforms for instant, secure transactions.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Custom API Development</span>
+            <span className="feature-desc">We build tailored endpoints to automate your workflows and connect with government, logistics, or CRM systems.</span>
+          </div>
+          <div className="included-card">
+            <span className="feature-title">Data Security & Compliance</span>
+            <span className="feature-desc">End-to-end encryption, audit trails, and compliance with local regulations to keep your data safe.</span>
+          </div>
+        </div>
       </section>
       <section className="contact-section">
         <h2 className="section-title">Early Interest Registration</h2>
