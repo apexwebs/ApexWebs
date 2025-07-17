@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useRef } from 'react';
 import './customWebAppPage.css';
 
 const whyChooseUs = [
@@ -53,6 +55,50 @@ const testimonials = [
 ];
 
 export default function CustomWebAppPage() {
+	const formRef = useRef<HTMLFormElement>(null);
+
+	// Helper to format message
+	function formatMessage(form: HTMLFormElement) {
+		const name = form[0].value;
+		const businessType = form[1].value;
+		const email = form[2].value;
+		const packageType = form[3].value;
+		const phone = form[4].value;
+		const timeline = form[5].value;
+		const company = form[6].value;
+		const budget = form[7].value;
+		const description = form[8].value;
+		const features = Array.from(
+			form.querySelectorAll('.features-checkboxes input[type="checkbox"]:checked')
+		)
+			.map((el: any) => el.parentNode.textContent.trim())
+			.join(', ');
+		const urls = form[17].value;
+		return `New Web Project Request\n\nName: ${name}\nBusiness Type: ${businessType}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nBudget: ${budget}\nPreferred Package: ${packageType}\nTimeline: ${timeline}\nDescription: ${description}\nFeatures Needed: ${features}\nReference URLs: ${urls}`;
+	}
+
+	// Form submit handler
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		const form = formRef.current!;
+		const msg = encodeURIComponent(formatMessage(form));
+		// WhatsApp
+		window.open(`https://wa.me/254706154142?text=${msg}`, '_blank');
+		// Email
+		window.open(`mailto:apexkelabs@gmail.com?subject=New Web Project Request&body=${msg}`, '_blank');
+	}
+
+	// Button actions
+	function handleQuote() {
+		window.open('https://wa.me/254706154142?text=Hi! I want a quote for a custom web application.', '_blank');
+	}
+	function handleContact() {
+		window.open('mailto:apexkelabs@gmail.com?subject=Contact Request&body=Hi! I want to discuss a web project.', '_blank');
+	}
+	function scrollToForm() {
+		document.querySelector('.contact-section')?.scrollInto
+	}
+
 	return (
 		<div className="page-container">
 			<main className="custom-web-app-page">
@@ -65,8 +111,12 @@ export default function CustomWebAppPage() {
 							Apex Webs: Building Kenya’s digital future, one business at a time.
 						</p>
 						<div className="hero-cta-row">
-							<button className="hero-cta-btn">Get a Quote</button>
-							<button className="hero-cta-btn secondary">Contact Us</button>
+							<button className="hero-cta-btn" onClick={handleQuote}>
+								Get a Quote
+							</button>
+							<button className="hero-cta-btn secondary" onClick={handleContact}>
+								Contact Us
+							</button>
 						</div>
 					</div>
 				</section>
@@ -253,7 +303,7 @@ export default function CustomWebAppPage() {
 								<li>Social media integration</li>
 								<li>3 months support</li>
 							</ul>
-							<button className="package-btn">Get Started</button>
+							<button className="package-btn" onClick={handleQuote}>Get Started</button>
 						</div>
 						<div className="package-card highlight">
 							<span className="package-badge">Most Popular</span>
@@ -269,7 +319,7 @@ export default function CustomWebAppPage() {
 								<li>Blog functionality</li>
 								<li>6 months support</li>
 							</ul>
-							<button className="package-btn">Most Popular</button>
+							<button className="package-btn" onClick={handleQuote}>Most Popular</button>
 						</div>
 						<div className="package-card">
 							<h3>Enterprise</h3>
@@ -284,7 +334,7 @@ export default function CustomWebAppPage() {
 								<li>Priority support</li>
 								<li>12 months support</li>
 							</ul>
-							<button className="package-btn">Contact Us</button>
+							<button className="package-btn" onClick={handleContact}>Contact Us</button>
 						</div>
 					</div>
 				</section>
@@ -292,7 +342,7 @@ export default function CustomWebAppPage() {
 				<section className="contact-section">
 					<h2>Tell Us About Your Project</h2>
 					<p className="section-desc">Help us understand your requirements so we can provide you with the best solution</p>
-					<form className="contact-form">
+					<form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
 						<div className="form-row">
 							<div className="form-group">
 								<label className="form-label">Full Name *</label>
@@ -359,29 +409,65 @@ export default function CustomWebAppPage() {
 						<div className="form-row">
 							<div className="form-group full-width">
 								<label className="form-label">Project Description *</label>
-								<textarea rows={4} required placeholder="Tell us about your project, goals, and any specific features you need..." />
+								<textarea
+									rows={4}
+									required
+									placeholder="Tell us about your project, goals, and any specific features you need..."
+								/>
 							</div>
 						</div>
 						<div className="form-row">
-							<label className="form-label" style={{color:'#fff',fontWeight:600,marginBottom:'0.5rem',width:'100%'}}>Features Needed (Check all that apply)</label>
+							<label
+								className="form-label"
+								style={{
+									color: '#fff',
+									fontWeight: 600,
+									marginBottom: '0.5rem',
+									width: '100%',
+								}}
+							>
+								Features Needed (Check all that apply)
+							</label>
 							<div className="features-checkboxes">
-								<label><input type="checkbox" className="white-checkbox" /> Online Store/E-commerce</label>
-								<label><input type="checkbox" className="white-checkbox" /> Blog/News Section</label>
-								<label><input type="checkbox" className="white-checkbox" /> Photo Gallery</label>
-								<label><input type="checkbox" className="white-checkbox" /> Online Booking</label>
-								<label><input type="checkbox" className="white-checkbox" /> User Login/Portal</label>
-								<label><input type="checkbox" className="white-checkbox" /> Multi-language</label>
-								<label><input type="checkbox" className="white-checkbox" /> Payment Integration</label>
-								<label><input type="checkbox" className="white-checkbox" /> Social Media Integration</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Online Store/E-commerce
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Blog/News Section
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Photo Gallery
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Online Booking
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> User Login/Portal
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Multi-language
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Payment Integration
+								</label>
+								<label>
+									<input type="checkbox" className="white-checkbox" /> Social Media Integration
+								</label>
 							</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group full-width">
 								<label className="form-label">Do you have any websites you like? (URLs or references)</label>
-								<textarea rows={2} className="url-area" placeholder="Share any websites you admire or want to use as inspiration..." />
+								<textarea
+									rows={2}
+									className="url-area"
+									placeholder="Share any websites you admire or want to use as inspiration..."
+								/>
 							</div>
 						</div>
-						<button type="submit" className="submit-btn">Submit Project Request</button>
+						<button type="submit" className="submit-btn">
+							Submit Project Request
+						</button>
 					</form>
 				</section>
 
