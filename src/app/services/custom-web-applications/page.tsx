@@ -59,21 +59,21 @@ export default function CustomWebAppPage() {
 
 	// Helper to format message
 	function formatMessage(form: HTMLFormElement) {
-		const name = form[0].value;
-		const businessType = form[1].value;
-		const email = form[2].value;
-		const packageType = form[3].value;
-		const phone = form[4].value;
-		const timeline = form[5].value;
-		const company = form[6].value;
-		const budget = form[7].value;
-		const description = form[8].value;
+		const name = (form[0] as HTMLInputElement).value;
+		const businessType = (form[1] as HTMLSelectElement).value;
+		const email = (form[2] as HTMLInputElement).value;
+		const packageType = (form[3] as HTMLSelectElement).value;
+		const phone = (form[4] as HTMLInputElement).value;
+		const timeline = (form[5] as HTMLSelectElement).value;
+		const company = (form[6] as HTMLInputElement).value;
+		const budget = (form[7] as HTMLSelectElement).value;
+		const description = (form[8] as HTMLTextAreaElement).value;
 		const features = Array.from(
 			form.querySelectorAll('.features-checkboxes input[type="checkbox"]:checked')
 		)
-			.map((el: any) => el.parentNode.textContent.trim())
+			.map((el) => (el.parentNode as HTMLElement).textContent?.trim() || "")
 			.join(', ');
-		const urls = form[17].value;
+		const urls = (form[17] as HTMLTextAreaElement).value;
 		return `New Web Project Request\n\nName: ${name}\nBusiness Type: ${businessType}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nBudget: ${budget}\nPreferred Package: ${packageType}\nTimeline: ${timeline}\nDescription: ${description}\nFeatures Needed: ${features}\nReference URLs: ${urls}`;
 	}
 
@@ -94,9 +94,6 @@ export default function CustomWebAppPage() {
 	}
 	function handleContact() {
 		window.open('mailto:apexkelabs@gmail.com?subject=Contact Request&body=Hi! I want to discuss a web project.', '_blank');
-	}
-	function scrollToForm() {
-		document.querySelector('.contact-section')?.scrollInto
 	}
 
 	return (
