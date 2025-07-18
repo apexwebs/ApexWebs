@@ -6,77 +6,18 @@ export default function Home() {
   return (
     <div style={{ background: '#f8fafc' }}>
       {/* HERO SECTION */}
-      <section
-        id="hero"
-        style={{
-          background: `url('/images/HeroBackground.jpg') center/cover no-repeat`,
-          backgroundBlendMode: 'normal',
-          filter: 'brightness(1.08) contrast(1.12) saturate(1.15)',
-          color: '#fff',
-          padding: '7.5rem 0 2.5rem 0', // Increased top padding to push content below navbar
-          textAlign: 'center',
-          position: 'relative',
-          minHeight: '60vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 2 }}>
-          <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: 0, lineHeight: 1.1, color: '#fff', textShadow: '0 2px 12px #2228' }}>
+      <section id="hero" className="hero-section-bg">
+        <div className="hero-section-content">
+          <h1>
             Innovative Web Solutions<br />
             <span style={{ color: '#00704A', display: 'block' }}>for Kenyan Business<br />Growth</span>
           </h1>
-          <p style={{ fontSize: '1.18rem', margin: '32px 0 36px 0', fontWeight: 500, color: '#fff', textShadow: '0 2px 8px #2228' }}>
+          <p>
             Apex Webs provides cutting-edge web applications, development services, and hosting solutions designed specifically for the unique challenges and opportunities in the Kenyan market.
           </p>
           <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap', marginTop: 8 }}>
-            <a
-              href="#services"
-              className="hero-btn"
-              style={{
-                background: 'linear-gradient(90deg, #009688 0%, #43e97b 100%)',
-                color: '#fff',
-                padding: '0.7rem 1.6rem',
-                borderRadius: 28,
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: '1rem',
-                boxShadow: '0 4px 18px #0ea5e955, 0 1.5px 0 #fff inset', // raised effect
-                border: 'none',
-                outline: 'none',
-                marginBottom: 8,
-                transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
-                willChange: 'transform',
-              }}
-              onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)')}
-              onMouseOut={e => (e.currentTarget.style.transform = 'none')}
-            >
-              Explore Our Solutions
-            </a>
-            <a
-              href="#contact"
-              className="hero-btn"
-              style={{
-                background: 'linear-gradient(90deg, #00704A 0%, #0ea5e9 100%)',
-                color: '#fff',
-                padding: '0.7rem 1.6rem',
-                borderRadius: 28,
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: '1rem',
-                boxShadow: '0 4px 18px #0ea5e955, 0 1.5px 0 #fff inset', // raised effect
-                border: 'none',
-                outline: 'none',
-                marginBottom: 8,
-                transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
-                willChange: 'transform',
-              }}
-              onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)')}
-              onMouseOut={e => (e.currentTarget.style.transform = 'none')}
-            >
-              Request Consultation
-            </a>
+            <a href="#services" className="hero-btn">Explore Our Solutions</a>
+            <a href="#contact" className="hero-btn">Request Consultation</a>
           </div>
         </div>
       </section>

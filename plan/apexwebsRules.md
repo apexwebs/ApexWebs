@@ -894,3 +894,6 @@ By following these rules, the Apex Webs project should achieve:
 - Optimize for both mobile and desktop (especially legibility on wide screens).
 
 ---
+
+- Our primary users are MOBILE device users. All designs and features must prioritize mobile-first rendering and usability.
+- Desktop/PC screens must also be considered, ensuring a responsive and visually appealing experience across all device types.

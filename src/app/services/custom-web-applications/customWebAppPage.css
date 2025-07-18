@@ -76,18 +76,34 @@
   background: var(--accent-red);
   color: #fff;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem; /* Reduced roundedness */
   padding: 0.9rem 2.2rem;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(229,57,53,0.12);
+}
+.hero-cta-btn:hover,
+.hero-cta-btn:focus,
+.hero-cta-btn:active {
+  color: #e53935; /* Apex red text */
+  background: transparent;
+  outline: 2px solid #e53935; /* Apex red outline */
+  border: 2px solid #e53935;
 }
 .hero-cta-btn.secondary {
   background: #fff;
   color: var(--primary-gradient-start);
   border: 1.5px solid var(--primary-gradient-start);
+}
+.hero-cta-btn.secondary:hover,
+.hero-cta-btn.secondary:focus,
+.hero-cta-btn.secondary:active {
+  color: #e53935;
+  background: transparent;
+  outline: 2px solid #e53935;
+  border: 2px solid #e53935;
 }
 .hero-cta-btn:hover {
   background: #b92d2d;
