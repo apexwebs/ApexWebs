@@ -530,3 +530,7 @@ The removal of upfront consultation fees positions Apex Webs as more accessible 
 **MVP Strategy**: Simplified Lead Generation + Vercel Free Tier  
 **Review Schedule**: Weekly during Phase 1, bi-weekly during Phase 2  
 **Success Criteria**: Consistent lead generation within 60 days, revenue generation within 120 days
+
+## Device & Screen Support
+- The majority of our clients will use MOBILE devices. All web solutions must be designed with a mobile-first approach, ensuring optimal appearance and usability on smartphones and tablets.
+- Desktop/PC screens must also be supported, with responsive layouts and features for a seamless experience across all devices.
