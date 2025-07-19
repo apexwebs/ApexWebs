@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface ProjectCardProps {
   imageSrc: string;
@@ -15,9 +16,11 @@ export default function ProjectCard({ imageSrc, alt, title, description, tags }:
     <div className="project-card">
       <div style={{ width: "100%", height: 120, background: "#fff", borderRadius: 16, marginBottom: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>
         {!imgError ? (
-          <img
+          <Image
             src={imageSrc}
             alt={alt}
+            width={120}
+            height={120}
             style={{ width: "80%", height: "80%", objectFit: "cover", borderRadius: 12 }}
             onError={() => setImgError(true)}
           />
