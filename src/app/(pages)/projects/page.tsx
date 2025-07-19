@@ -1,53 +1,6 @@
 import React from 'react';
 import ProjectCard from '../../../../components/ProjectCard';
 
-type ProjectStatus = 'completed' | 'in-progress' | 'featured';
-
-interface Project {
-  title: string;
-  status: ProjectStatus;
-  description: string;
-  link: string;
-  featured: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: 'E-commerce Platform for Nairobi Mart',
-    status: 'completed',
-    description: 'A scalable e-commerce site for a local retailer, featuring secure payments and inventory management.',
-    link: '#',
-    featured: true,
-  },
-  {
-    title: 'School Portal for Green Valley Academy',
-    status: 'in-progress',
-    description: 'A digital portal for school administration, parent-teacher communication, and fee management.',
-    link: '#',
-    featured: false,
-  },
-  {
-    title: 'Startup Landing Page for TechSavvy',
-    status: 'completed',
-    description: 'A modern, conversion-focused landing page for a Kenyan tech startup.',
-    link: '#',
-    featured: false,
-  },
-  {
-    title: 'NGO Website for Community Uplift',
-    status: 'featured',
-    description: 'A featured project empowering a local NGO with a digital presence and donation system.',
-    link: '#',
-    featured: true,
-  },
-];
-
-const statusColors: Record<ProjectStatus, string> = {
-  completed: '#22c55e',
-  'in-progress': '#eab308',
-  featured: '#0ea5e9',
-};
-
 export default function ProjectsPage() {
   // Sample images and tags for each project
   const projectCards = [

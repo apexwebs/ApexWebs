@@ -4,6 +4,8 @@ import ServicesSection from '../../components/ServicesSection';
 import ProjectCard from '../../components/ProjectCard';
 import ContactModal from '../../components/ContactModal';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -89,16 +91,16 @@ export default function Home() {
           {/* Brand/About */}
           <div style={{ flex: 1, minWidth: 220 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-              <img src="/images/ApexLogo.jpg" alt="Apex Webs Logo" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover', background: '#fff' }} />
+              <Image src="/images/ApexLogo.jpg" alt="Apex Webs Logo" width={38} height={38} style={{ borderRadius: '50%', objectFit: 'cover', background: '#fff' }} />
               <span style={{ fontWeight: 700, fontSize: '1.25rem', color: '#fff' }}>Apex <span style={{ color: '#e0f7fa' }}>Webs</span></span>
             </div>
             <div style={{ fontSize: 15, marginBottom: 8, color: '#e0f7fa' }}>Building innovative web solutions for Kenyan businesses since 2023.</div>
             <div style={{ fontSize: 15, marginBottom: 18, color: '#e0f7fa' }}>Pamoja Twaweza: Together We Can</div>
             <div style={{ display: 'flex', gap: 12 }}>
-              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="/twitter.svg" alt="Twitter" style={{ width: 18, height: 18 }} /></a>
-              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="/linkedin.svg" alt="LinkedIn" style={{ width: 18, height: 18 }} /></a>
-              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="/facebook.svg" alt="Facebook" style={{ width: 18, height: 18 }} /></a>
-              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="/instagram.svg" alt="Instagram" style={{ width: 18, height: 18 }} /></a>
+              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/twitter.svg" alt="Twitter" width={18} height={18} /></a>
+              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/linkedin.svg" alt="LinkedIn" width={18} height={18} /></a>
+              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/facebook.svg" alt="Facebook" width={18} height={18} /></a>
+              <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/instagram.svg" alt="Instagram" width={18} height={18} /></a>
             </div>
           </div>
           {/* Quick Links */}
@@ -106,10 +108,10 @@ export default function Home() {
             <div style={{ fontWeight: 700, fontSize: '1.08rem', marginBottom: 8 }}>Quick Links</div>
             <div style={{ width: 40, height: 3, background: '#e53935', borderRadius: 2, marginBottom: 14 }} />
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#e0f7fa', fontSize: 15 }}>
-              <li style={{ marginBottom: 8 }}><a href="/" style={{ color: '#e0f7fa' }}>Home</a></li>
-              <li style={{ marginBottom: 8 }}><a href="/about" style={{ color: '#e0f7fa' }}>About Us</a></li>
-              <li style={{ marginBottom: 8 }}><a href="/services" style={{ color: '#e0f7fa' }}>Services</a></li>
-              <li style={{ marginBottom: 8 }}><a href="/projects" style={{ color: '#e0f7fa' }}>Projects</a></li>
+              <li style={{ marginBottom: 8 }}><Link href="/" style={{ color: '#e0f7fa' }}>Home</Link></li>
+              <li style={{ marginBottom: 8 }}><Link href="/about" style={{ color: '#e0f7fa' }}>About Us</Link></li>
+              <li style={{ marginBottom: 8 }}><Link href="/services" style={{ color: '#e0f7fa' }}>Services</Link></li>
+              <li style={{ marginBottom: 8 }}><Link href="/projects" style={{ color: '#e0f7fa' }}>Projects</Link></li>
               <li style={{ marginBottom: 8 }}><a href="#" id="contact-link" style={{ color: '#e0f7fa' }}>Contact</a></li>
             </ul>
           </div>
@@ -118,19 +120,19 @@ export default function Home() {
             <div style={{ fontWeight: 700, fontSize: '1.08rem', marginBottom: 8 }}>Contact Us</div>
             <div style={{ width: 40, height: 3, background: '#e53935', borderRadius: 2, marginBottom: 14 }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <img src="/globe.svg" alt="Email" style={{ width: 18, height: 18 }} />
+              <Image src="/globe.svg" alt="Email" width={18} height={18} />
               <span style={{ color: '#e0f7fa', fontSize: 15 }}>info@apexwebs.co.ke</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <img src="/file.svg" alt="Location" style={{ width: 18, height: 18 }} />
+              <Image src="/file.svg" alt="Location" width={18} height={18} />
               <span style={{ color: '#e0f7fa', fontSize: 15 }}>Mombasa, Kenya</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <img src="/window.svg" alt="Phone" style={{ width: 18, height: 18 }} />
+              <Image src="/window.svg" alt="Phone" width={18} height={18} />
               <span style={{ color: '#e0f7fa', fontSize: 15 }}>+254 743 581 914</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <img src="/globe.svg" alt="Website" style={{ width: 18, height: 18 }} />
+              <Image src="/globe.svg" alt="Website" width={18} height={18} />
               <span style={{ color: '#e0f7fa', fontSize: 15 }}>www.apexwebs.co.ke</span>
             </div>
           </div>
