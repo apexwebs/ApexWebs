@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from '../components/Navbar';
-// import Link from 'next/link';
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Apex Webs",
@@ -32,8 +20,7 @@ export default function RootLayout({
         <title>Apex Webs | Professional Web Solutions in Kenya</title>
         <meta name="description" content="Kenyan web solutions for SMEs, schools, and startups. Custom websites, hosting, and API integrations." />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ margin: 0, padding: 0 }}>
-        {/* Fixed Navbar with Logo and Title */}
+      <body style={{ margin: 0, padding: 0 }}>
         {/* Fixed Navbar with Logo and Title */}
         {/** Use dynamic import for Navbar as a Client Component */}
         <Navbar />
