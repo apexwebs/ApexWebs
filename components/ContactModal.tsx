@@ -65,7 +65,7 @@ export default function ContactModal({ open, onClose }: { open: boolean; onClose
           <label style={{ fontWeight: 600, color: "#19977a", marginBottom: 4, marginTop: 8 }}>Project Details</label>
           <textarea name="details" placeholder="Tell us about your project requirements..." required rows={4} value={form.details} onChange={handleChange} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem" }} />
           <button type="submit" disabled={loading} style={{ background: "#e53935", color: "#fff", padding: "1rem", borderRadius: 8, fontWeight: 700, fontSize: "1.08rem", border: "none", marginTop: 10, cursor: "pointer", boxShadow: "0 2px 8px #e5393555", transition: "background 0.2s, box-shadow 0.2s" }}>{loading ? "Sending..." : "Send Message"}</button>
-          {success && <div style={{ color: "#19977a", fontWeight: 600, marginTop: 8 }}>Message sent! We'll get back to you soon.</div>}
+          {success && <div style={{ color: "#19977a", fontWeight: 600, marginTop: 8 }}>Message sent! We&apos;ll get back to you soon.</div>}
           {error && <div style={{ color: "#e53935", fontWeight: 600, marginTop: 8 }}>{error}</div>}
         </form>
       </div>
