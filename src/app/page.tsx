@@ -138,10 +138,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Simple Footer - seamless, no divider */}
-      <footer style={{ background: '#26323a', color: '#e0f7fa', padding: '1.1rem 0', textAlign: 'center', fontSize: 16, marginTop: 0 }}>
-        &copy; {new Date().getFullYear()} Apex Webs. All rights reserved. Empowering Kenyan businesses through innovative web solutions.
-      </footer>
+      {/* Footer removed as requested */}
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );

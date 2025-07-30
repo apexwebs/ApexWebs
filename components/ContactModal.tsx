@@ -33,20 +33,21 @@ export default function ContactModal({ open, onClose }: { open: boolean; onClose
       setLoading(false);
       return;
     }
+    // Format message for WhatsApp and Gmail
+    const msg = encodeURIComponent(
+      `Contact Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nDetails: ${form.details}`
+    );
     try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      });
-      if (res.ok) {
-        setSuccess(true);
-        setForm({ name: "", email: "", phone: "", company: "", details: "" });
-      } else {
-        setError("Failed to send. Try again.");
-      }
+      window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+      window.open(`mailto:apexkelabs@gmail.com?subject=Contact Lead&body=${msg}`, "_blank");
+      setSuccess(true);
+      setForm({ name: "", email: "", phone: "", company: "", details: "" });
+      // Dismiss modal after 2 seconds using onClose prop
+      setTimeout(() => {
+        if (typeof onClose === 'function') onClose();
+      }, 2000);
     } catch {
-      setError("Network error. Try again.");
+      setError("Failed to open WhatsApp or Gmail. Try again.");
     }
     setLoading(false);
   };
