@@ -3,8 +3,6 @@
 // Sidebar navigation for the admin dashboard
 // Uses Lucide icons and Next.js Link for navigation
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   Users,

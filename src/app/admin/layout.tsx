@@ -76,7 +76,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
           {/* Dashboard content */}
           <main className="flex-1 p-8 overflow-y-auto bg-[#f6f8fa]">{children}</main>
           <footer className="text-center text-xs text-gray-400 py-4 border-t border-gray-100 bg-white">
-            © 2025 Apex Webs Admin Portal | Version 1.0 | "Pamoja Tunaweza" - Together We Can
+            © 2025 Apex Webs Admin Portal | Version 1.0 | &quot;Pamoja Tunaweza&quot; - Together We Can
           </footer>
         </div>
       </div>

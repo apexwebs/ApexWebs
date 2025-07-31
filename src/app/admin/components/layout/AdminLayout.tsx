@@ -68,9 +68,6 @@ function SettingsSection() {
   );
 }
 
-interface AdminLayoutProps {
-  children: React.ReactNode
-}
 
 export function AdminLayout() {
   const sessionResult = useSession();
