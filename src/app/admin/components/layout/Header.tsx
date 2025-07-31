@@ -1,14 +1,6 @@
 "use client";
-import Image from 'next/image';
-
-import React from "react";
-import { useSession } from "next-auth/react";
-import { Avatar } from "../../../../components/ui/avatar";
-
 
 export function Header() {
-  const sessionResult = useSession();
-  const session = sessionResult?.data;
 
   return (
     <header className="flex items-center justify-between px-8 py-4 bg-white/95 border-b border-gray-100 rounded-b-2xl shadow-lg sticky top-0 z-20 backdrop-blur-sm">
