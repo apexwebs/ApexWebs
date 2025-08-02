@@ -2,9 +2,8 @@
 // src/app/admin/page.tsx
 // Entry page for the admin dashboard
 
-
-import { AdminLayout } from './components/layout/AdminLayout'
+import { MockupDashboard } from './components/dashboard/MockupDashboard'
 
 export default function AdminPage() {
-  return <AdminLayout />;
+  return <MockupDashboard />;
 }

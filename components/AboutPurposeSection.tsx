@@ -6,7 +6,7 @@ export default function AboutPurposeSection() {
       <h2 className="about-purpose-title">Our Purpose</h2>
       <div className="about-purpose-underline" />
       <div className="about-purpose-hero">
-        <h3 className="about-purpose-main">
+        <h3 className="about-purpose-main" style={{ color: '#fff' }}>
           Pamoja Twaweza: <span style={{ color: '#fff' }}>Build. Connect. Transform.</span>
         </h3>
         <p className="about-purpose-sub">Together We Can: Building Digital Bridges for Kenyan Business</p>

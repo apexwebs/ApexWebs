@@ -31,22 +31,25 @@ export function Sidebar({ activeSection, setActiveSection }: { activeSection: st
         <div className="bg-teal-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center text-lg shadow">AW</div>
         <span className="text-xl font-bold text-gray-900">Apex Admin</span>
       </div>
-      <nav className="p-2 flex-1">
-        <ul className="space-y-1">
+      <nav className="p-4 flex-1">
+        <ul className="space-y-2">
           {navigation.map((item) => {
-            const isActive = activeSection === item.name;
+            const isActive = activeSection === item.name.toLowerCase()
             return (
               <li key={item.name}>
                 <button
-                  type="button"
-                  onClick={() => setActiveSection(item.name)}
-                  className={`w-full text-left flex items-center px-4 py-2 rounded-lg font-medium transition-colors text-gray-700 hover:bg-teal-50 hover:text-teal-700 ${
+                  onClick={() => setActiveSection(item.name.toLowerCase())}
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-200 ${
                     isActive
-                      ? 'bg-teal-100 text-teal-700 font-semibold shadow-sm' : ''
+                      ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/25 transform scale-[1.02]'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 hover:shadow-sm'
                   }`}
                 >
-                  <item.icon className="mr-3 h-5 w-5" />
-                  {item.name}
+                  <item.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-500'}`} />
+                  <span className={isActive ? 'text-white font-bold' : ''}>{item.name}</span>
+                  {isActive && (
+                    <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  )}
                 </button>
               </li>
             )
