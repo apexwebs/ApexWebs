@@ -9,6 +9,7 @@ const adminSettings = {
 
 export async function GET() {
   // Never return password in real app
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password, ...publicSettings } = adminSettings;
   return NextResponse.json(publicSettings);
 }
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
     if (phone) adminSettings.phone = phone;
     if (password) adminSettings.password = password; // hash in production
     return NextResponse.json({ success: true, message: 'Settings updated.' });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: 'Failed to update settings.' }, { status: 400 });
   }
 }

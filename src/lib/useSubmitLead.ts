@@ -20,8 +20,8 @@ export function useSubmitLead() {
         throw new Error(data.error || "Failed to submit lead");
       }
       setSuccess(true);
-    } catch (err: any) {
-      setError(err.message || "Unknown error");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }

@@ -30,7 +30,7 @@ async function readLeads() {
 }
 
 // Write leads to file
-async function writeLeads(leads: any[]) {
+async function writeLeads(leads: unknown[]) {
   try {
     await ensureDataDir();
     await writeFile(LEADS_FILE, JSON.stringify(leads, null, 2));
