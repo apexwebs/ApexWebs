@@ -95,7 +95,7 @@ export default function Home() {
               <span style={{ fontWeight: 700, fontSize: '1.25rem', color: '#fff' }}>Apex <span style={{ color: '#e0f7fa' }}>Webs</span></span>
             </div>
             <div style={{ fontSize: 15, marginBottom: 8, color: '#e0f7fa' }}>Building innovative web solutions for Kenyan businesses since 2023.</div>
-            <div style={{ fontSize: 15, marginBottom: 18, color: '#e0f7fa' }}>Pamoja Twaweza: Together We Can</div>
+            <div style={{ fontSize: 15, marginBottom: 18, color: '#fff' }}>Pamoja Twaweza: Together We Can</div>
             <div style={{ display: 'flex', gap: 12 }}>
               <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/twitter.svg" alt="Twitter" width={18} height={18} /></a>
               <a href="#" style={{ color: '#fff', background: '#19977a', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Image src="/linkedin.svg" alt="LinkedIn" width={18} height={18} /></a>

@@ -1,10 +1,9 @@
 
-@import "tw-animate-css";
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --primary-gradient-start: #1DB7A4;
