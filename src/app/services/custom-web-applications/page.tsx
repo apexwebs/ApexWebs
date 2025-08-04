@@ -103,7 +103,7 @@ export default function CustomWebAppPage() {
   }
 
   // Modal form submit handler
-  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
 	e.preventDefault();
 	// Validation
   if (!modalForm.name || !modalForm.email || !modalForm.phone) {
@@ -118,17 +118,65 @@ export default function CustomWebAppPage() {
 	  setFeedback({ type: 'error', message: 'Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678).' });
 	  return;
 	}
-	// Format message
-	const msg = encodeURIComponent(formatMessage(modalForm));
-	// WhatsApp
-	window.open(`https://wa.me/254706154142?text=${msg}`, '_blank');
-	// Email
-	window.open(`mailto:apexkelabs@gmail.com?subject=New Web Project Request&body=${msg}`, '_blank');
-	setFeedback({ type: 'success', message: 'Your request was sent! We will contact you soon.' });
-	setModalForm({
-	  name: '', businessType: '', email: '', packageType: '', phone: '', timeline: '', company: '', budget: '', description: '', features: [], urls: ''
-	});
-	setTimeout(() => setModalOpen(false), 2000);
+	
+	try {
+	  // Submit lead to API first
+	  const leadData = {
+		name: modalForm.name,
+		phone: modalForm.phone,
+		company: modalForm.company,
+		projectDetails: `${modalForm.packageType} Package - ${modalForm.description}\n\nBusiness: ${modalForm.businessType}\nTimeline: ${modalForm.timeline}\nBudget: ${modalForm.budget}\nFeatures: ${modalForm.features.join(', ')}\nURLs: ${modalForm.urls}`
+	  };
+	  
+	  const response = await fetch('/api/leads', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(leadData),
+	  });
+	  
+	  const result = await response.json();
+	  
+	  if (response.ok && result.success) {
+		// Lead saved successfully, now send notifications
+		const msg = encodeURIComponent(formatMessage(modalForm));
+		// WhatsApp
+		window.open(`https://wa.me/254706154142?text=${msg}`, '_blank');
+		// Email
+		window.open(`mailto:apexkelabs@gmail.com?subject=New Web Project Request&body=${msg}`, '_blank');
+		
+		setFeedback({ type: 'success', message: 'Your request was sent! We will contact you soon.' });
+		setModalForm({
+		  name: '', businessType: '', email: '', packageType: '', phone: '', timeline: '', company: '', budget: '', description: '', features: [], urls: ''
+		});
+		setTimeout(() => setModalOpen(false), 2000);
+	  } else {
+		// API failed, but still send via WhatsApp/Gmail
+		console.error('Lead API failed:', result.error);
+		const msg = encodeURIComponent(formatMessage(modalForm));
+		window.open(`https://wa.me/254706154142?text=${msg}`, '_blank');
+		window.open(`mailto:apexkelabs@gmail.com?subject=New Web Project Request&body=${msg}`, '_blank');
+		
+		setFeedback({ type: 'success', message: 'Your request was sent! We will contact you soon.' });
+		setModalForm({
+		  name: '', businessType: '', email: '', packageType: '', phone: '', timeline: '', company: '', budget: '', description: '', features: [], urls: ''
+		});
+		setTimeout(() => setModalOpen(false), 2000);
+	  }
+	} catch (error) {
+	  // Network error, but still send via WhatsApp/Gmail as fallback
+	  console.error('Network error submitting lead:', error);
+	  const msg = encodeURIComponent(formatMessage(modalForm));
+	  window.open(`https://wa.me/254706154142?text=${msg}`, '_blank');
+	  window.open(`mailto:apexkelabs@gmail.com?subject=New Web Project Request&body=${msg}`, '_blank');
+	  
+	  setFeedback({ type: 'success', message: 'Your request was sent! We will contact you soon.' });
+	  setModalForm({
+		name: '', businessType: '', email: '', packageType: '', phone: '', timeline: '', company: '', budget: '', description: '', features: [], urls: ''
+	  });
+	  setTimeout(() => setModalOpen(false), 2000);
+	}
   }
 
   // Modal open handler for each package

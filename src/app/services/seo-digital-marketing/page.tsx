@@ -38,7 +38,7 @@ export default function SeoDigitalMarketingPage() {
   function formatMessage(form: typeof modalForm) {
     return `SEO/Digital Marketing Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nGoals: ${form.goals}`;
   }
-  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!modalForm.name || !modalForm.email || !modalForm.phone) {
       setFeedback({ type: "error", message: "Please fill all required fields." });
@@ -52,12 +52,57 @@ export default function SeoDigitalMarketingPage() {
       setFeedback({ type: "error", message: "Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678)." });
       return;
     }
-    const msg = encodeURIComponent(formatMessage(modalForm));
-    window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-    window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
-    setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-    setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
-    setTimeout(() => setModalOpen(false), 2000);
+    
+    try {
+      // Submit lead to API first
+      const leadData = {
+        name: modalForm.name,
+        phone: modalForm.phone,
+        company: modalForm.company,
+        projectDetails: `SEO/Digital Marketing Service - ${modalForm.goals}`
+      };
+      
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        // Lead saved successfully, now send notifications
+        const msg = encodeURIComponent(formatMessage(modalForm));
+        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+        window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
+        
+        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+        setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
+        setTimeout(() => setModalOpen(false), 2000);
+      } else {
+        // API failed, but still send via WhatsApp/Gmail
+        console.error('Lead API failed:', result.error);
+        const msg = encodeURIComponent(formatMessage(modalForm));
+        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+        window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
+        
+        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+        setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
+        setTimeout(() => setModalOpen(false), 2000);
+      }
+    } catch (error) {
+      // Network error, but still send via WhatsApp/Gmail as fallback
+      console.error('Network error submitting lead:', error);
+      const msg = encodeURIComponent(formatMessage(modalForm));
+      window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+      window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
+      
+      setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+      setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
+      setTimeout(() => setModalOpen(false), 2000);
+    }
   }
 
   return (

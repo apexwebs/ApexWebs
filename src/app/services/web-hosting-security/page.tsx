@@ -100,7 +100,7 @@ export default function WebHostingSecurityPage() {
   function formatMessage(form: typeof modalForm) {
     return `Web Hosting/Security Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nWebsite: ${form.website}\nSelected Package: ${selectedPackage || form.packageType}\nNeeds: ${form.needs}\nFeatures: ${form.features.join(", ")}`;
   }
-  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!modalForm.name || !modalForm.email || !modalForm.phone) {
       setFeedback({ type: "error", message: "Please fill all required fields." });
@@ -114,12 +114,57 @@ export default function WebHostingSecurityPage() {
       setFeedback({ type: "error", message: "Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678)." });
       return;
     }
-    const msg = encodeURIComponent(formatMessage(modalForm));
-    window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-    window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
-    setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-    setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
-    setTimeout(() => setModalOpen(false), 2000);
+    
+    try {
+      // Submit lead to API first
+      const leadData = {
+        name: modalForm.name,
+        phone: modalForm.phone,
+        company: modalForm.company,
+        projectDetails: `Web Hosting/Security Service - Package: ${selectedPackage || modalForm.packageType}, Website: ${modalForm.website}, Needs: ${modalForm.needs}, Features: ${modalForm.features.join(", ")}`
+      };
+      
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        // Lead saved successfully, now send notifications
+        const msg = encodeURIComponent(formatMessage(modalForm));
+        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+        window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
+        
+        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+        setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
+        setTimeout(() => setModalOpen(false), 2000);
+      } else {
+        // API failed, but still send via WhatsApp/Gmail
+        console.error('Lead API failed:', result.error);
+        const msg = encodeURIComponent(formatMessage(modalForm));
+        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+        window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
+        
+        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+        setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
+        setTimeout(() => setModalOpen(false), 2000);
+      }
+    } catch (error) {
+      // Network error, but still send via WhatsApp/Gmail as fallback
+      console.error('Network error submitting lead:', error);
+      const msg = encodeURIComponent(formatMessage(modalForm));
+      window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+      window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
+      
+      setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+      setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
+      setTimeout(() => setModalOpen(false), 2000);
+    }
   }
   function openModalForPackage(pkg: string) {
     setSelectedPackage(pkg);

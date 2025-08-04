@@ -1,4 +1,3 @@
-import './AboutPurposeSection.css';
 
 export default function AboutPurposeSection() {
   return (

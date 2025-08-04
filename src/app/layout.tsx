@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ margin: 0, padding: 0 }}>
         <ConditionalNavbar>{children}</ConditionalNavbar>
         <footer style={{ textAlign: 'center', padding: '1rem', borderTop: '1px solid #eee', marginTop: '2rem', color: '#888' }}>
-          &copy; {new Date().getFullYear()} Apex Webs. All rights reserved.
+          &copy; 2025 Apex Webs. All rights reserved.
         </footer>
       </body>
     </html>
