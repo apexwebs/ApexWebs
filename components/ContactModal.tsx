@@ -284,7 +284,7 @@ export default function ContactModal({ open, onClose }: { open: boolean; onClose
               borderRadius: 6,
               border: "1px solid #a7f3d0"
             }}>
-              ✅ Message sent! We'll get back to you soon.
+              ✅ Message sent! We&apos;ll get back to you soon.
             </div>
           )}
           

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const navItems = [
   { name: "Dashboard", icon: "📊" },
@@ -22,9 +23,11 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
       <div>
         <div className="flex items-center gap-3 px-6 py-6 border-b border-gray-100">
           <div className="w-10 h-10 rounded-full overflow-hidden shadow-md border-2 border-teal-100">
-            <img 
+            <Image 
               src="/images/ApexLogo.jpg" 
               alt="ApexWebs Logo" 
+              width={40}
+              height={40}
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Fallback to ApexLogo1.jpg if main logo fails
@@ -49,7 +52,11 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
             {navItems.map((item) => (
               <li key={item.name}>
                 <button
-                  className="flex items-center gap-3 px-4 py-2 rounded-lg font-medium transition-colors w-full text-left bg-teal-600 text-white shadow"
+                  className={`flex items-center gap-3 px-4 py-2 rounded-lg font-medium transition-colors w-full text-left ${
+                    activePage === item.name 
+                      ? 'bg-teal-600 text-white shadow' 
+                      : 'hover:bg-gray-100 text-gray-700'
+                  }`}
                   style={{ minHeight: "44px" }}
                   onClick={() => setActivePage(item.name as PageName)}
                 >

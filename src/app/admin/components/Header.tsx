@@ -7,7 +7,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
 
 interface AdminUser {
   id: string;
@@ -17,7 +16,6 @@ interface AdminUser {
 }
 
 export default function Header() {
-  const router = useRouter();
   const [user, setUser] = useState<AdminUser | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -55,7 +53,7 @@ export default function Header() {
     setIsLoggingOut(true);
     
     try {
-      const response = await fetch('/api/admin/auth/logout', {
+      await fetch('/api/admin/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });

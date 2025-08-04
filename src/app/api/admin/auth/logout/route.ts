@@ -4,9 +4,9 @@
  * POST /api/admin/auth/logout
  */
 
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     // Create response with success message
     const response = NextResponse.json({

@@ -4,7 +4,6 @@
  * for the ApexWebs Admin Portal
  */
 
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { SignJWT, jwtVerify } from 'jose';
 
@@ -217,7 +216,7 @@ export async function checkAuthInMiddleware(request: NextRequest): Promise<boole
   try {
     const user = await verifyToken(token);
     return user !== null;
-  } catch (error) {
+  } catch {
     return false;
   }
 }

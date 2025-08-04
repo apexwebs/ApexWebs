@@ -3,11 +3,10 @@
 import React, { useEffect, useState } from "react";
 
 // Enhanced StatCard with ApexWebs project card styling
-function StatCard({ title, value, icon, color, trend, trendText }: { 
+function StatCard({ title, value, icon, trend, trendText }: { 
   title: string; 
   value: string; 
   icon: React.ReactNode; 
-  color: string;
   trend?: string;
   trendText?: string;
 }) {
@@ -61,7 +60,7 @@ function ChartPlaceholder({ title, type }: { title: string; type: string }) {
 }
 
 // Lead Detail Modal Component
-function LeadDetailModal({ lead, isOpen, onClose }: { lead: any; isOpen: boolean; onClose: () => void }) {
+function LeadDetailModal({ lead, isOpen, onClose }: { lead: Lead | null; isOpen: boolean; onClose: () => void }) {
   if (!isOpen || !lead) return null;
 
   return (
@@ -150,7 +149,7 @@ function LeadDetailModal({ lead, isOpen, onClose }: { lead: any; isOpen: boolean
 }
 
 // Enhanced Lead Row Component
-function LeadRow({ lead, index, onViewDetails }: { lead: any; index: number; onViewDetails: (lead: any) => void }) {
+function LeadRow({ lead, index, onViewDetails }: { lead: Lead; index: number; onViewDetails: (lead: Lead) => void }) {
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
@@ -275,7 +274,11 @@ type Lead = {
   id?: string;
   name: string;
   phone: string;
+  email?: string;
+  company?: string;
+  source?: string;
   message?: string;
+  projectDetails?: string;
   timestamp?: string;
 };
 
@@ -300,8 +303,8 @@ export default function Dashboard() {
         } else {
           setError("Failed to load leads");
         }
-      } catch (err: any) {
-        setError(err.message || "Unknown error");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
       }
@@ -344,7 +347,6 @@ export default function Dashboard() {
               title="Total Leads" 
               value={totalLeads.toString()} 
               icon={<span>📊</span>} 
-              color="#3b82f6"
               trend="+12%"
               trendText="this month"
             />
@@ -352,7 +354,6 @@ export default function Dashboard() {
               title="Qualified Leads" 
               value={qualifiedLeads.toString()} 
               icon={<span>✅</span>} 
-              color="#10b981"
               trend="+8%"
               trendText="this month"
             />
@@ -367,7 +368,6 @@ export default function Dashboard() {
               title="Conversion Rate" 
               value={`${conversionRate}%`} 
               icon={<span>📈</span>} 
-              color="#8b5cf6"
               trend="+2.1%"
               trendText="improvement"
             />
@@ -375,7 +375,6 @@ export default function Dashboard() {
               title="Avg. Response Time" 
               value={`${avgResponseTime}h`} 
               icon={<span>⚡</span>} 
-              color="#f59e0b"
               trend="-0.3h"
               trendText="faster"
             />
@@ -439,7 +438,7 @@ export default function Dashboard() {
         {/* Footer with branding */}
         <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 text-center">
           <p className="text-sm text-gray-500">
-            © 2025 Apex Webs Admin Portal | Version 1.0 | "Pamoja Tunaweza" - Together We Can
+            © 2025 Apex Webs Admin Portal | Version 1.0 | &quot;Pamoja Tunaweza&quot; - Together We Can
           </p>
         </div>
       </div>

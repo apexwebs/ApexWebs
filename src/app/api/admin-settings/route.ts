@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // In-memory settings store (replace with DB/Redis in production)
-let adminSettings = {
+const adminSettings = {
   email: 'admin@example.com',
   phone: '0700000000',
   password: '', // hashed in production

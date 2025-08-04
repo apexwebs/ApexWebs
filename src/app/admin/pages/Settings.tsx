@@ -1,4 +1,3 @@
-import React from "react";
 import React, { useState, useEffect } from "react";
 
 export default function Settings() {
@@ -37,7 +36,7 @@ export default function Settings() {
       } else {
         setError(data.error || "Failed to save settings.");
       }
-    } catch (err) {
+    } catch {
       setError("Failed to save settings.");
     } finally {
       setLoading(false);
