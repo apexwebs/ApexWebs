@@ -15,10 +15,10 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, phone, password } = await request.json();
+    const { email, phone } = await request.json();
     if (email) adminSettings.email = email;
     if (phone) adminSettings.phone = phone;
-    if (password) adminSettings.password = password; // hash in production
+    // Password handling removed as it's not being used
     return NextResponse.json({ success: true, message: 'Settings updated.' });
   } catch {
     return NextResponse.json({ success: false, error: 'Failed to update settings.' }, { status: 400 });

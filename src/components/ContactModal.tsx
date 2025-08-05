@@ -60,7 +60,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
