@@ -1,46 +1,30 @@
-
 "use client";
 import React, { useState } from "react";
-import "../custom-web-applications/customWebAppPage.css";
-
-const features = [
-  {
-    title: "SEO Optimization",
-    desc: "Get your business found on Google and other search engines with expert keyword targeting and on-page SEO.",
-  },
-  {
-    title: "Digital Marketing Campaigns",
-    desc: "Reach your ideal customers with creative, data-driven campaigns across social media, email, and more.",
-  },
-  {
-    title: "Analytics & Performance Reporting",
-    desc: "Track every click, conversion, and ROI with clear, actionable reports to grow your business.",
-  },
-];
+import Link from 'next/link';
 
 export default function SeoDigitalMarketingPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalForm, setModalForm] = useState({
     name: "",
     email: "",
-    phone: "",
+    website: "",
     company: "",
     goals: "",
+    budget: "",
   });
-  const [feedback, setFeedback] = useState(null as null | { type: "success" | "error"; message: string });
+  const [feedback, setFeedback] = useState<null | { type: "success" | "error"; message: string }>(null);
 
   function validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
-  function validateKenyanPhone(phone: string) {
-    return /^(\+254|0)7\d{8}$/.test(phone);
-  }
+  
   function formatMessage(form: typeof modalForm) {
-    return `SEO/Digital Marketing Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nGoals: ${form.goals}`;
+    return `SEO & Digital Marketing Lead\n\nName: ${form.name}\nEmail: ${form.email}\nWebsite: ${form.website}\nCompany: ${form.company}\nGoals: ${form.goals}\nBudget: ${form.budget}`;
   }
-  async function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+  
+  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!modalForm.name || !modalForm.email || !modalForm.phone) {
+    if (!modalForm.name || !modalForm.email) {
       setFeedback({ type: "error", message: "Please fill all required fields." });
       return;
     }
@@ -48,169 +32,349 @@ export default function SeoDigitalMarketingPage() {
       setFeedback({ type: "error", message: "Please enter a valid email address." });
       return;
     }
-    if (!validateKenyanPhone(modalForm.phone)) {
-      setFeedback({ type: "error", message: "Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678)." });
-      return;
-    }
-    
-    try {
-      // Submit lead to API first
-      const leadData = {
-        name: modalForm.name,
-        phone: modalForm.phone,
-        company: modalForm.company,
-        projectDetails: `SEO/Digital Marketing Service - ${modalForm.goals}`
-      };
-      
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leadData),
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        // Lead saved successfully, now send notifications
-        const msg = encodeURIComponent(formatMessage(modalForm));
-        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-        window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
-        
-        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-        setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
-        setTimeout(() => setModalOpen(false), 2000);
-      } else {
-        // API failed, but still send via WhatsApp/Gmail
-        console.error('Lead API failed:', result.error);
-        const msg = encodeURIComponent(formatMessage(modalForm));
-        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-        window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
-        
-        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-        setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
-        setTimeout(() => setModalOpen(false), 2000);
-      }
-    } catch (error) {
-      // Network error, but still send via WhatsApp/Gmail as fallback
-      console.error('Network error submitting lead:', error);
-      const msg = encodeURIComponent(formatMessage(modalForm));
-      window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-      window.open(`mailto:apexkelabs@gmail.com?subject=SEO/Digital Marketing Lead&body=${msg}`, "_blank");
-      
-      setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-      setModalForm({ name: "", email: "", phone: "", company: "", goals: "" });
-      setTimeout(() => setModalOpen(false), 2000);
-    }
+    const msg = encodeURIComponent(formatMessage(modalForm));
+    window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+    window.open(`mailto:apexkelabs@gmail.com?subject=SEO & Digital Marketing Lead&amp;body=${msg}`, "_blank");
+    setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+    setModalForm({ name: "", email: "", website: "", company: "", goals: "", budget: "" });
+    setTimeout(() => setModalOpen(false), 2000);
   }
 
+  const features = [
+    {
+      icon: '🔍',
+      title: "Search Engine Optimization",
+      desc: "Improve your website's visibility and ranking on Google and other search engines.",
+    },
+    {
+      icon: '📱',
+      title: "Social Media Marketing",
+      desc: "Build your brand presence across Facebook, Instagram, Twitter, and LinkedIn.",
+    },
+    {
+      icon: '📧',
+      title: "Email Marketing",
+      desc: "Engage your customers with targeted email campaigns that drive conversions.",
+    },
+    {
+      icon: '📊',
+      title: "Analytics & Reporting",
+      desc: "Track your marketing performance with detailed analytics and actionable insights.",
+    },
+    {
+      icon: '💰',
+      title: "Pay-Per-Click Advertising",
+      desc: "Maximize ROI with targeted Google Ads and social media advertising campaigns.",
+    },
+    {
+      icon: '📝',
+      title: "Content Marketing",
+      desc: "Create compelling content that attracts, engages, and converts your target audience.",
+    },
+  ];
+
+  const benefits = [
+    {
+      title: "Increase Online Visibility",
+      desc: "Get found by more potential customers when they search for your products or services."
+    },
+    {
+      title: "Drive Quality Traffic",
+      desc: "Attract visitors who are genuinely interested in what your business offers."
+    },
+    {
+      title: "Boost Conversions",
+      desc: "Turn more website visitors into paying customers with strategic marketing."
+    }
+  ];
+
+  const packages = [
+    {
+      name: "Starter SEO",
+      price: "KSh 15,000/month",
+      features: [
+        "Keyword Research",
+        "On-Page Optimization",
+        "Monthly Reports",
+        "Basic Link Building"
+      ]
+    },
+    {
+      name: "Professional Marketing",
+      price: "KSh 35,000/month",
+      features: [
+        "Everything in Starter",
+        "Social Media Management",
+        "Content Creation",
+        "Email Marketing",
+        "PPC Campaign Setup"
+      ]
+    },
+    {
+      name: "Enterprise Solution",
+      price: "KSh 60,000+/month",
+      features: [
+        "Everything in Professional",
+        "Advanced Analytics",
+        "Multi-Platform Campaigns",
+        "Dedicated Account Manager",
+        "Custom Strategy"
+      ]
+    }
+  ];
+
   return (
-    <div className="page-container">
+    <div className="apex-font-family" style={{ background: 'var(--apex-bg-primary)', minHeight: '100vh' }}>
+      {/* Modal */}
       {modalOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            background: "#000a",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-          }}
-          onWheel={e => e.stopPropagation()}
-        >
-          <style>{`body { overflow: hidden !important; }`}</style>
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 16,
-              boxShadow: "0 4px 24px #1db7a422",
-              padding: "2rem 1.5rem",
-              minWidth: 320,
-              maxWidth: 440,
-              width: "100%",
-              position: "relative",
-              maxHeight: "90vh",
-              overflowY: "auto",
-            }}
-          >
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.7)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1rem'
+        }}>
+          <div className="apex-card" style={{
+            maxWidth: '500px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            position: 'relative'
+          }}>
             <button
               onClick={() => setModalOpen(false)}
+              className="apex-btn"
               style={{
-                position: "absolute",
-                top: 12,
-                right: 12,
-                background: "#e53935",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                padding: "0.3rem 0.7rem",
-                fontWeight: 700,
-                cursor: "pointer",
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'var(--apex-accent-red)',
+                color: 'white',
+                padding: '0.5rem',
+                minWidth: 'auto',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%'
               }}
             >
-              X
+              ×
             </button>
-            <h2 style={{ fontWeight: 800, fontSize: "1.3rem", marginBottom: 10, color: "#19977a" }}>Request SEO/Digital Marketing</h2>
-            <form style={{ display: "flex", flexDirection: "column", gap: 14 }} onSubmit={handleModalSubmit}>
-              <input name="name" type="text" placeholder="Full Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="email" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="phone" type="text" placeholder="Kenyan Phone (e.g. 0712345678 or +254712345678) *" required value={modalForm.phone} onChange={e => setModalForm(f => ({ ...f, phone: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="company" type="text" placeholder="Company Name" value={modalForm.company} onChange={e => setModalForm(f => ({ ...f, company: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <textarea name="goals" placeholder="What are your marketing goals?" rows={3} value={modalForm.goals} onChange={e => setModalForm(f => ({ ...f, goals: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <button type="submit" style={{ background: "#e53935", color: "#fff", padding: "1rem", borderRadius: 8, fontWeight: 700, fontSize: "1.08rem", border: "none", marginTop: 10, cursor: "pointer", boxShadow: "0 2px 8px #e5393555", transition: "background 0.2s, box-shadow 0.2s" }}>Submit Request</button>
-              {feedback && (
-                <div style={{ color: feedback?.type === "success" ? "#19977a" : "#e53935", fontWeight: 600, marginTop: 8 }}>
-                  {feedback?.message}
-                </div>
-              )}
+            
+            <h3 className="apex-text-h3 apex-mb-md" style={{ color: 'var(--apex-primary-700)' }}>
+              Get Marketing Strategy
+            </h3>
+            
+            {feedback && (
+              <div style={{
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+                marginBottom: '1rem',
+                background: feedback.type === 'success' ? '#d4edda' : '#f8d7da',
+                color: feedback.type === 'success' ? '#155724' : '#721c24',
+                border: `1px solid ${feedback.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`
+              }}>
+                {feedback.message}
+              </div>
+            )}
+            
+            <form onSubmit={handleModalSubmit}>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                <input
+                  type="text"
+                  placeholder="Full Name *"
+                  value={modalForm.name}
+                  onChange={(e) => setModalForm({...modalForm, name: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address *"
+                  value={modalForm.email}
+                  onChange={(e) => setModalForm({...modalForm, email: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="url"
+                  placeholder="Current Website (if any)"
+                  value={modalForm.website}
+                  onChange={(e) => setModalForm({...modalForm, website: e.target.value})}
+                  className="apex-input"
+                />
+                <input
+                  type="text"
+                  placeholder="Company/Business Name"
+                  value={modalForm.company}
+                  onChange={(e) => setModalForm({...modalForm, company: e.target.value})}
+                  className="apex-input"
+                />
+                <select
+                  value={modalForm.budget}
+                  onChange={(e) => setModalForm({...modalForm, budget: e.target.value})}
+                  className="apex-input"
+                >
+                  <option value="">Select Budget Range</option>
+                  <option value="Under KSh 20,000">Under KSh 20,000</option>
+                  <option value="KSh 20,000 - 50,000">KSh 20,000 - 50,000</option>
+                  <option value="KSh 50,000 - 100,000">KSh 50,000 - 100,000</option>
+                  <option value="Over KSh 100,000">Over KSh 100,000</option>
+                </select>
+                <textarea
+                  placeholder="Describe your marketing goals"
+                  value={modalForm.goals}
+                  onChange={(e) => setModalForm({...modalForm, goals: e.target.value})}
+                  className="apex-input"
+                  rows={3}
+                />
+                <button type="submit" className="apex-btn apex-btn-primary">
+                  Send Request
+                </button>
+              </div>
             </form>
           </div>
         </div>
       )}
-      <main className="custom-web-app-page">
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>SEO & Digital Marketing</h1>
-            <p className="hero-subtitle">
-              Get found online and grow your business with expert SEO and digital marketing for Kenya.
+
+      {/* Hero Section */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h1 className="apex-text-hero apex-mb-sm">
+              SEO & Digital Marketing
+            </h1>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto' }}>
+              Grow your business with data-driven digital marketing strategies
             </p>
-            <div className="hero-cta-row">
-              <button className="hero-cta-btn" onClick={() => setModalOpen(true)}>
-                Request Service
-              </button>
-            </div>
           </div>
-        </section>
-        <section className="included-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>What&apos;s Included</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <p className="section-desc" style={{ textAlign: 'center' }}>Everything you need to boost your online presence and attract more customers in Kenya.</p>
-          <div className="included-cards">
-            {features.map((f, i) => (
-              <div className="included-card" key={i} style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Our Marketing Services
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {features.map((feature, index) => (
+              <div key={index} className="apex-card apex-text-center">
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                  {feature.icon}
+                </div>
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {feature.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {feature.desc}
+                </p>
               </div>
             ))}
           </div>
-        </section>
-        <footer className="custom-web-app-footer">
-          <span>
-            © 2024 Apex Webs. All rights reserved. SEO & Digital Marketing for Kenya.
-          </span>
-        </footer>
-      </main>
+        </div>
+      </section>
+
+      {/* Packages */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Marketing Packages
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {packages.map((pkg, index) => (
+              <div key={index} className="apex-card">
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {pkg.name}
+                </h3>
+                <div className="apex-text-h2 apex-mb-md" style={{ color: 'var(--apex-primary)' }}>
+                  {pkg.price}
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0' }}>
+                  {pkg.features.map((feature, idx) => (
+                    <li key={idx} className="apex-mb-xs" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ color: 'var(--apex-accent-red)', fontWeight: 'bold' }}>✓</span>
+                      <span className="apex-text-small" style={{ color: '#64748b' }}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="apex-btn apex-btn-primary"
+                  style={{ width: '100%' }}
+                >
+                  Get Started
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Why Digital Marketing?
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {benefits.map((benefit, index) => (
+              <div key={index} className="apex-card">
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {benefit.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {benefit.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-card apex-text-center">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Ready to Grow Your Business?
+            </h2>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body apex-mb-lg" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+              Let's create a custom digital marketing strategy that drives real results for your business.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="apex-btn apex-btn-primary"
+              >
+                Get Marketing Strategy
+              </button>
+              <Link href="/contact" className="apex-btn apex-btn-secondary">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
-
-
-  // ...existing code...
 }

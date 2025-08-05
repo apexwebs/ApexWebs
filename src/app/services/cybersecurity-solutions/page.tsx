@@ -1,22 +1,6 @@
-
 "use client";
 import React, { useState } from "react";
-import "../custom-web-applications/customWebAppPage.css";
-
-const features = [
-  {
-    title: "Real-Time Threat Detection",
-    desc: "AI-powered monitoring to spot and block cyber threats before they impact your business.",
-  },
-  {
-    title: "Advanced Data Encryption",
-    desc: "Keep sensitive information safe with military-grade encryption and secure data storage.",
-  },
-  {
-    title: "Comprehensive Security Audits",
-    desc: "Regular reviews and compliance checks to ensure your systems meet the highest standards.",
-  },
-];
+import Link from 'next/link';
 
 export default function CybersecuritySolutionsPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,15 +17,14 @@ export default function CybersecuritySolutionsPage() {
   function validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
-  function validateKenyanPhone(phone: string) {
-    return /^(\+254|0)7\d{8}$/.test(phone);
-  }
+  
   function formatMessage(form: typeof modalForm) {
-    return `Cybersecurity Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nRole: ${form.role}\nNeeds: ${form.needs}`;
+    return `Cybersecurity Solutions Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nRole: ${form.role}\nSecurity Needs: ${form.needs}`;
   }
+  
   function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!modalForm.name || !modalForm.email || !modalForm.phone) {
+    if (!modalForm.name || !modalForm.email) {
       setFeedback({ type: "error", message: "Please fill all required fields." });
       return;
     }
@@ -49,122 +32,270 @@ export default function CybersecuritySolutionsPage() {
       setFeedback({ type: "error", message: "Please enter a valid email address." });
       return;
     }
-    if (!validateKenyanPhone(modalForm.phone)) {
-      setFeedback({ type: "error", message: "Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678)." });
-      return;
-    }
     const msg = encodeURIComponent(formatMessage(modalForm));
     window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-    window.open(`mailto:apexkelabs@gmail.com?subject=Cybersecurity Lead&body=${msg}`, "_blank");
+    window.open(`mailto:apexkelabs@gmail.com?subject=Cybersecurity Solutions Lead&amp;body=${msg}`, "_blank");
     setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
     setModalForm({ name: "", email: "", phone: "", company: "", role: "", needs: "" });
     setTimeout(() => setModalOpen(false), 2000);
   }
 
+  const features = [
+    {
+      icon: '🛡️',
+      title: "Real-Time Threat Detection",
+      desc: "AI-powered monitoring to spot and block cyber threats before they impact your business.",
+    },
+    {
+      icon: '🔐',
+      title: "Advanced Data Encryption",
+      desc: "Keep sensitive information safe with military-grade encryption and secure data storage.",
+    },
+    {
+      icon: '🔍',
+      title: "Comprehensive Security Audits",
+      desc: "Regular reviews and compliance checks to ensure your systems meet the highest standards.",
+    },
+    {
+      icon: '🚨',
+      title: "Incident Response",
+      desc: "24/7 monitoring and rapid response to security incidents and breaches.",
+    },
+    {
+      icon: '🔒',
+      title: "Access Control",
+      desc: "Multi-factor authentication and role-based access controls for your systems.",
+    },
+    {
+      icon: '📋',
+      title: "Compliance Management",
+      desc: "Ensure your business meets industry standards and regulatory requirements.",
+    },
+  ];
+
+  const benefits = [
+    {
+      title: "Protect Your Business",
+      desc: "Safeguard your digital assets, customer data, and business operations from cyber threats."
+    },
+    {
+      title: "Maintain Trust",
+      desc: "Build customer confidence with robust security measures and transparent practices."
+    },
+    {
+      title: "Ensure Compliance",
+      desc: "Meet regulatory requirements and industry standards for data protection."
+    }
+  ];
+
   return (
-    <div className="page-container">
+    <div className="apex-font-family" style={{ background: 'var(--apex-bg-primary)', minHeight: '100vh' }}>
+      {/* Modal */}
       {modalOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            background: "#000a",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-          }}
-          onWheel={e => e.stopPropagation()}
-        >
-          <style>{`body { overflow: hidden !important; }`}</style>
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 16,
-              boxShadow: "0 4px 24px #1db7a422",
-              padding: "2rem 1.5rem",
-              minWidth: 320,
-              maxWidth: 440,
-              width: "100%",
-              position: "relative",
-              maxHeight: "90vh",
-              overflowY: "auto",
-            }}
-          >
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.7)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1rem'
+        }}>
+          <div className="apex-card" style={{
+            maxWidth: '500px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            position: 'relative'
+          }}>
             <button
               onClick={() => setModalOpen(false)}
+              className="apex-btn"
               style={{
-                position: "absolute",
-                top: 12,
-                right: 12,
-                background: "#e53935",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                padding: "0.3rem 0.7rem",
-                fontWeight: 700,
-                cursor: "pointer",
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'var(--apex-accent-red)',
+                color: 'white',
+                padding: '0.5rem',
+                minWidth: 'auto',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%'
               }}
             >
-              X
+              ×
             </button>
-            <h2 style={{ fontWeight: 800, fontSize: "1.3rem", marginBottom: 10, color: "#19977a" }}>Request Cybersecurity</h2>
-            <form style={{ display: "flex", flexDirection: "column", gap: 14 }} onSubmit={handleModalSubmit}>
-              <input name="name" type="text" placeholder="Full Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="email" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="phone" type="text" placeholder="Kenyan Phone (e.g. 0712345678 or +254712345678) *" required value={modalForm.phone} onChange={e => setModalForm(f => ({ ...f, phone: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="company" type="text" placeholder="Company Name" value={modalForm.company} onChange={e => setModalForm(f => ({ ...f, company: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="role" type="text" placeholder="Role/Position" value={modalForm.role} onChange={e => setModalForm(f => ({ ...f, role: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <textarea name="needs" placeholder="Describe your cybersecurity needs *" required rows={3} value={modalForm.needs} onChange={e => setModalForm(f => ({ ...f, needs: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <button type="submit" style={{ background: "#e53935", color: "#fff", padding: "1rem", borderRadius: 8, fontWeight: 700, fontSize: "1.08rem", border: "none", marginTop: 10, cursor: "pointer", boxShadow: "0 2px 8px #e5393555", transition: "background 0.2s, box-shadow 0.2s" }}>Submit Request</button>
-              {feedback && (
-                <div style={{ color: feedback?.type === "success" ? "#19977a" : "#e53935", fontWeight: 600, marginTop: 8 }}>
-                  {feedback?.message}
-                </div>
-              )}
+            
+            <h3 className="apex-text-h3 apex-mb-md" style={{ color: 'var(--apex-primary-700)' }}>
+              Get Security Assessment
+            </h3>
+            
+            {feedback && (
+              <div style={{
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+                marginBottom: '1rem',
+                background: feedback.type === 'success' ? '#d4edda' : '#f8d7da',
+                color: feedback.type === 'success' ? '#155724' : '#721c24',
+                border: `1px solid ${feedback.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`
+              }}>
+                {feedback.message}
+              </div>
+            )}
+            
+            <form onSubmit={handleModalSubmit}>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                <input
+                  type="text"
+                  placeholder="Full Name *"
+                  value={modalForm.name}
+                  onChange={(e) => setModalForm({...modalForm, name: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address *"
+                  value={modalForm.email}
+                  onChange={(e) => setModalForm({...modalForm, email: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={modalForm.phone}
+                  onChange={(e) => setModalForm({...modalForm, phone: e.target.value})}
+                  className="apex-input"
+                />
+                <input
+                  type="text"
+                  placeholder="Company/Organization"
+                  value={modalForm.company}
+                  onChange={(e) => setModalForm({...modalForm, company: e.target.value})}
+                  className="apex-input"
+                />
+                <input
+                  type="text"
+                  placeholder="Your Role/Position"
+                  value={modalForm.role}
+                  onChange={(e) => setModalForm({...modalForm, role: e.target.value})}
+                  className="apex-input"
+                />
+                <textarea
+                  placeholder="Describe your security needs"
+                  value={modalForm.needs}
+                  onChange={(e) => setModalForm({...modalForm, needs: e.target.value})}
+                  className="apex-input"
+                  rows={3}
+                />
+                <button type="submit" className="apex-btn apex-btn-primary">
+                  Send Request
+                </button>
+              </div>
             </form>
           </div>
         </div>
       )}
-      <main className="custom-web-app-page">
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>Cybersecurity Solutions</h1>
-            <p className="hero-subtitle">
-              Enterprise-grade security for Kenyan businesses—protect your data, reputation, and customers.
+
+      {/* Hero Section */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h1 className="apex-text-hero apex-mb-sm">
+              Cybersecurity Solutions
+            </h1>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto' }}>
+              Comprehensive security solutions to protect your business from cyber threats
             </p>
-            <div className="hero-cta-row">
-              <button className="hero-cta-btn" onClick={() => setModalOpen(true)}>
-                Request Cybersecurity
-              </button>
-            </div>
           </div>
-        </section>
-        <section className="included-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>What&apos;s Included</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <p className="section-desc" style={{ textAlign: 'center' }}>Comprehensive protection for your business, data, and customers.</p>
-          <div className="included-cards">
-            {features.map((f, i) => (
-              <div className="included-card" key={i} style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Our Security Services
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {features.map((feature, index) => (
+              <div key={index} className="apex-card apex-text-center">
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                  {feature.icon}
+                </div>
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {feature.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {feature.desc}
+                </p>
               </div>
             ))}
           </div>
-        </section>
-        <footer className="custom-web-app-footer">
-          <span>
-            © 2024 Apex Webs. All rights reserved. Cybersecurity for Kenya.
-          </span>
-        </footer>
-      </main>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Why Cybersecurity Matters
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {benefits.map((benefit, index) => (
+              <div key={index} className="apex-card">
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {benefit.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {benefit.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-card apex-text-center">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Secure Your Business Today
+            </h2>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body apex-mb-lg" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+              Do not wait for a security breach. Let's assess your current security posture and implement robust protection measures.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="apex-btn apex-btn-primary"
+              >
+                Get Security Assessment
+              </button>
+              <Link href="/contact" className="apex-btn apex-btn-secondary">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

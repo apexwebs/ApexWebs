@@ -1,108 +1,30 @@
-
 "use client";
 import React, { useState } from "react";
-import "../custom-web-applications/customWebAppPage.css";
-
-const whyChooseUs = [
-  {
-    icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 40 40">
-        <circle cx="20" cy="20" r="20" fill="#19977a" />
-        <path d="M12 20l6 6 10-10" stroke="#fff" strokeWidth="2" />
-      </svg>
-    ),
-    title: "Reliable Hosting",
-    desc: "99.9% uptime and fast servers for Kenyan businesses.",
-  },
-  {
-    icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 40 40">
-        <circle cx="20" cy="20" r="20" fill="#e53935" />
-        <path d="M20 12v16M12 20h16" stroke="#fff" strokeWidth="2" />
-      </svg>
-    ),
-    title: "Top Security",
-    desc: "SSL, backups, and protection against threats.",
-  },
-  {
-    icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 40 40">
-        <circle cx="20" cy="20" r="20" fill="#1dbf73" />
-        <path d="M14 26l6-12 6 12" stroke="#fff" strokeWidth="2" />
-      </svg>
-    ),
-    title: "Local Support",
-    desc: "Friendly help and fast response for Kenyan clients.",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Brian Otieno",
-    company: "Online Shop",
-    quote: "Our site is always online and secure. Apex Webs support is excellent!",
-  },
-  {
-    name: "Grace Muthoni",
-    company: "Consulting Agency",
-    quote: "We never worry about downtime or hacks. Highly recommended.",
-  },
-  {
-    name: "IT Manager",
-    company: "Nairobi",
-    quote: "Backups and SSL were set up perfectly. Great value.",
-  },
-];
-
-const packages = [
-  {
-    name: "Starter",
-    price: "KSh 8,000/yr",
-    features: ["1 website", "SSL", "Daily backups", "Email hosting", "Basic support"],
-    button: "Get Started",
-  },
-  {
-    name: "Business",
-    price: "KSh 15,000/yr",
-    features: ["Up to 5 websites", "Advanced security", "Priority support", "Malware protection", "Monitoring"],
-    button: "Most Popular",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    price: "KSh 30,000/yr",
-    features: ["Unlimited websites", "Custom solutions", "Dedicated support", "Scalable resources", "24/7 monitoring"],
-    button: "Contact Us",
-  },
-];
+import Link from 'next/link';
 
 export default function WebHostingSecurityPage() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
   const [modalForm, setModalForm] = useState({
     name: "",
     email: "",
-    phone: "",
-    company: "",
     website: "",
-    needs: "",
-    features: [] as string[],
-    packageType: "",
+    company: "",
+    hostingType: "",
+    requirements: "",
   });
   const [feedback, setFeedback] = useState<null | { type: "success" | "error"; message: string }>(null);
 
   function validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
-  function validateKenyanPhone(phone: string) {
-    return /^(\+254|0)7\d{8}$/.test(phone);
-  }
+  
   function formatMessage(form: typeof modalForm) {
-    return `Web Hosting/Security Lead\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nCompany: ${form.company}\nWebsite: ${form.website}\nSelected Package: ${selectedPackage || form.packageType}\nNeeds: ${form.needs}\nFeatures: ${form.features.join(", ")}`;
+    return `Web Hosting & Security Lead\n\nName: ${form.name}\nEmail: ${form.email}\nWebsite: ${form.website}\nCompany: ${form.company}\nHosting Type: ${form.hostingType}\nRequirements: ${form.requirements}`;
   }
-  async function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+  
+  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!modalForm.name || !modalForm.email || !modalForm.phone) {
+    if (!modalForm.name || !modalForm.email) {
       setFeedback({ type: "error", message: "Please fill all required fields." });
       return;
     }
@@ -110,244 +32,352 @@ export default function WebHostingSecurityPage() {
       setFeedback({ type: "error", message: "Please enter a valid email address." });
       return;
     }
-    if (!validateKenyanPhone(modalForm.phone)) {
-      setFeedback({ type: "error", message: "Please enter a valid Kenyan phone number (e.g. 0712345678 or +254712345678)." });
-      return;
-    }
-    
-    try {
-      // Submit lead to API first
-      const leadData = {
-        name: modalForm.name,
-        phone: modalForm.phone,
-        company: modalForm.company,
-        projectDetails: `Web Hosting/Security Service - Package: ${selectedPackage || modalForm.packageType}, Website: ${modalForm.website}, Needs: ${modalForm.needs}, Features: ${modalForm.features.join(", ")}`
-      };
-      
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leadData),
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        // Lead saved successfully, now send notifications
-        const msg = encodeURIComponent(formatMessage(modalForm));
-        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-        window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
-        
-        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-        setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
-        setTimeout(() => setModalOpen(false), 2000);
-      } else {
-        // API failed, but still send via WhatsApp/Gmail
-        console.error('Lead API failed:', result.error);
-        const msg = encodeURIComponent(formatMessage(modalForm));
-        window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-        window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
-        
-        setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-        setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
-        setTimeout(() => setModalOpen(false), 2000);
-      }
-    } catch (error) {
-      // Network error, but still send via WhatsApp/Gmail as fallback
-      console.error('Network error submitting lead:', error);
-      const msg = encodeURIComponent(formatMessage(modalForm));
-      window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
-      window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting/Security Lead&body=${msg}`, "_blank");
-      
-      setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
-      setModalForm({ name: "", email: "", phone: "", company: "", website: "", needs: "", features: [], packageType: "" });
-      setTimeout(() => setModalOpen(false), 2000);
-    }
-  }
-  function openModalForPackage(pkg: string) {
-    setSelectedPackage(pkg);
-    setModalForm(f => ({ ...f, packageType: pkg }));
-    setFeedback(null);
-    setModalOpen(true);
+    const msg = encodeURIComponent(formatMessage(modalForm));
+    window.open(`https://wa.me/254706154142?text=${msg}`, "_blank");
+    window.open(`mailto:apexkelabs@gmail.com?subject=Web Hosting & Security Lead&amp;body=${msg}`, "_blank");
+    setFeedback({ type: "success", message: "Your request was sent! We will contact you soon." });
+    setModalForm({ name: "", email: "", website: "", company: "", hostingType: "", requirements: "" });
+    setTimeout(() => setModalOpen(false), 2000);
   }
 
+  const features = [
+    {
+      icon: '🚀',
+      title: "High-Performance Hosting",
+      desc: "Lightning-fast SSD storage and optimized servers for maximum website speed.",
+    },
+    {
+      icon: '🔒',
+      title: "SSL Certificates",
+      desc: "Free SSL certificates to secure your website and build customer trust.",
+    },
+    {
+      icon: '🛡️',
+      title: "Advanced Security",
+      desc: "Firewall protection, malware scanning, and DDoS protection included.",
+    },
+    {
+      icon: '📊',
+      title: "99.9% Uptime",
+      desc: "Reliable hosting with guaranteed uptime and 24/7 monitoring.",
+    },
+    {
+      icon: '💾',
+      title: "Automated Backups",
+      desc: "Daily backups to keep your data safe and easily recoverable.",
+    },
+    {
+      icon: '🎯',
+      title: "Kenya-Based Servers",
+      desc: "Local hosting for faster loading times for your Kenyan audience.",
+    },
+  ];
+
+  const hostingPlans = [
+    {
+      name: "Starter Hosting",
+      price: "KSh 2,500/month",
+      features: [
+        "5GB SSD Storage",
+        "Free SSL Certificate",
+        "Email Accounts",
+        "Basic Security",
+        "24/7 Support"
+      ]
+    },
+    {
+      name: "Business Hosting",
+      price: "KSh 5,000/month",
+      features: [
+        "25GB SSD Storage",
+        "Free SSL Certificate",
+        "Unlimited Email",
+        "Advanced Security",
+        "Daily Backups",
+        "Priority Support"
+      ]
+    },
+    {
+      name: "Enterprise Hosting",
+      price: "KSh 12,000/month",
+      features: [
+        "100GB SSD Storage",
+        "Premium SSL",
+        "Dedicated Resources",
+        "Enhanced Security",
+        "Real-time Backups",
+        "Dedicated Support"
+      ]
+    }
+  ];
+
+  const benefits = [
+    {
+      title: "Local Advantage",
+      desc: "Kenya-based servers ensure fast loading times for your local audience."
+    },
+    {
+      title: "Complete Security",
+      desc: "Comprehensive protection against cyber threats and data breaches."
+    },
+    {
+      title: "Expert Support",
+      desc: "Local technical support team available 24/7 to help you succeed."
+    }
+  ];
+
   return (
-    <div className="page-container">
+    <div className="apex-font-family" style={{ background: 'var(--apex-bg-primary)', minHeight: '100vh' }}>
+      {/* Modal */}
       {modalOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            background: "#000a",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-          }}
-          onWheel={e => e.stopPropagation()}
-        >
-          <style>{`body { overflow: hidden !important; }`}</style>
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 16,
-              boxShadow: "0 4px 24px #1db7a422",
-              padding: "2rem 1.5rem",
-              minWidth: 320,
-              maxWidth: 440,
-              width: "100%",
-              position: "relative",
-              maxHeight: "90vh",
-              overflowY: "auto",
-            }}
-          >
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.7)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1rem'
+        }}>
+          <div className="apex-card" style={{
+            maxWidth: '500px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            position: 'relative'
+          }}>
             <button
               onClick={() => setModalOpen(false)}
+              className="apex-btn"
               style={{
-                position: "absolute",
-                top: 12,
-                right: 12,
-                background: "#e53935",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                padding: "0.3rem 0.7rem",
-                fontWeight: 700,
-                cursor: "pointer",
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'var(--apex-accent-red)',
+                color: 'white',
+                padding: '0.5rem',
+                minWidth: 'auto',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%'
               }}
             >
-              X
+              ×
             </button>
-            <h2 style={{ fontWeight: 800, fontSize: "1.3rem", marginBottom: 10, color: "#19977a" }}>Request Hosting/Security</h2>
-            <form style={{ display: "flex", flexDirection: "column", gap: 14 }} onSubmit={handleModalSubmit}>
-              <input name="name" type="text" placeholder="Full Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="email" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="phone" type="text" placeholder="Kenyan Phone (e.g. 0712345678 or +254712345678) *" required value={modalForm.phone} onChange={e => setModalForm(f => ({ ...f, phone: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="company" type="text" placeholder="Company Name" value={modalForm.company} onChange={e => setModalForm(f => ({ ...f, company: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <input name="website" type="text" placeholder="Website URL" value={modalForm.website} onChange={e => setModalForm(f => ({ ...f, website: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <select name="packageType" required value={modalForm.packageType} onChange={e => setModalForm(f => ({ ...f, packageType: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }}>
-                <option value="">Select Package</option>
-                {packages.map((pkg, i) => (
-                  <option key={i} value={pkg.name}>{pkg.name}</option>
-                ))}
-              </select>
-              <textarea name="needs" placeholder="Hosting/Security Needs *" required rows={3} value={modalForm.needs} onChange={e => setModalForm(f => ({ ...f, needs: e.target.value }))} style={{ padding: "0.9rem", borderRadius: 8, border: "1.5px solid #e0f7fa", fontSize: "1rem", minWidth: 0, width: "100%" }} />
-              <label style={{ fontWeight: 600, color: "#19977a", marginBottom: 4, marginTop: 8 }}>Features Needed</label>
-              <div className="features-checkboxes" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 12px", color: "#222", marginBottom: 8, minWidth: 0, width: "100%" }}>
-                {["SSL", "Backups", "Email Hosting", "Malware Protection", "Monitoring", "Priority Support"].map((feat) => (
-                  <label key={feat} style={{ fontWeight: 400, color: "#222", display: "flex", alignItems: "center", gap: 6 }}>
-                    <input type="checkbox" className="white-checkbox" checked={modalForm.features.includes(feat)} onChange={e => {
-                      setModalForm(f => e.target.checked ? { ...f, features: [...f.features, feat] } : { ...f, features: f.features.filter(x => x !== feat) });
-                    }} /> {feat}
-                  </label>
-                ))}
+            
+            <h3 className="apex-text-h3 apex-mb-md" style={{ color: 'var(--apex-primary-700)' }}>
+              Get Hosting Quote
+            </h3>
+            
+            {feedback && (
+              <div style={{
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+                marginBottom: '1rem',
+                background: feedback.type === 'success' ? '#d4edda' : '#f8d7da',
+                color: feedback.type === 'success' ? '#155724' : '#721c24',
+                border: `1px solid ${feedback.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`
+              }}>
+                {feedback.message}
               </div>
-              <button type="submit" style={{ background: "#e53935", color: "#fff", padding: "1rem", borderRadius: 8, fontWeight: 700, fontSize: "1.08rem", border: "none", marginTop: 10, cursor: "pointer", boxShadow: "0 2px 8px #e5393555", transition: "background 0.2s, box-shadow 0.2s" }}>Submit Request</button>
-              {feedback && (
-                <div style={{ color: feedback?.type === "success" ? "#19977a" : "#e53935", fontWeight: 600, marginTop: 8 }}>
-                  {feedback?.message}
-                </div>
-              )}
+            )}
+            
+            <form onSubmit={handleModalSubmit}>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                <input
+                  type="text"
+                  placeholder="Full Name *"
+                  value={modalForm.name}
+                  onChange={(e) => setModalForm({...modalForm, name: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address *"
+                  value={modalForm.email}
+                  onChange={(e) => setModalForm({...modalForm, email: e.target.value})}
+                  className="apex-input"
+                  required
+                />
+                <input
+                  type="url"
+                  placeholder="Current Website (if any)"
+                  value={modalForm.website}
+                  onChange={(e) => setModalForm({...modalForm, website: e.target.value})}
+                  className="apex-input"
+                />
+                <input
+                  type="text"
+                  placeholder="Company/Business Name"
+                  value={modalForm.company}
+                  onChange={(e) => setModalForm({...modalForm, company: e.target.value})}
+                  className="apex-input"
+                />
+                <select
+                  value={modalForm.hostingType}
+                  onChange={(e) => setModalForm({...modalForm, hostingType: e.target.value})}
+                  className="apex-input"
+                >
+                  <option value="">Select Hosting Type</option>
+                  <option value="Shared Hosting">Shared Hosting</option>
+                  <option value="VPS Hosting">VPS Hosting</option>
+                  <option value="Dedicated Server">Dedicated Server</option>
+                  <option value="Cloud Hosting">Cloud Hosting</option>
+                </select>
+                <textarea
+                  placeholder="Describe your hosting requirements"
+                  value={modalForm.requirements}
+                  onChange={(e) => setModalForm({...modalForm, requirements: e.target.value})}
+                  className="apex-input"
+                  rows={3}
+                />
+                <button type="submit" className="apex-btn apex-btn-primary">
+                  Send Request
+                </button>
+              </div>
             </form>
           </div>
         </div>
       )}
-      <main className="custom-web-app-page">
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1>Web Hosting & Security</h1>
-            <p className="hero-subtitle">
-              Fast, secure, and reliable hosting for Kenyan businesses—plus expert security and support.
+
+      {/* Hero Section */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h1 className="apex-text-hero apex-mb-sm">
+              Web Hosting & Security
+            </h1>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto' }}>
+              Reliable, secure, and fast hosting solutions for your business
             </p>
-            <div className="hero-cta-row">
-              <button className="hero-cta-btn" onClick={() => setModalOpen(true)}>
-                Request Hosting
-              </button>
-            </div>
           </div>
-        </section>
-        <section className="included-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>What&apos;s Included</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <p className="section-desc" style={{ textAlign: 'center' }}>All-in-one hosting and security: speed, backups, SSL, and more.</p>
-          <div className="included-cards">
-            <div className="included-card" style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-              <h3>SSL Security</h3>
-              <p>Build trust with your customers using robust SSL certificates and secure connections for every site visitor.</p>
-            </div>
-            <div className="included-card" style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-              <h3>Automated Daily Backups</h3>
-              <p>Never lose data—your website is backed up every day, with easy restore options for peace of mind.</p>
-            </div>
-            <div className="included-card" style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-              <h3>24/7 Uptime Monitoring</h3>
-              <p>We keep a constant watch on your site, ensuring maximum uptime and instant alerts for any issues.</p>
-            </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Hosting Features
+            </h2>
+            <div className="apex-section-highlight" />
           </div>
-        </section>
-        <section className="packages-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>Hosting Packages</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <p className="section-desc" style={{ textAlign: 'center' }}>Choose the best plan for your needs</p>
-          <div className="packages-cards" style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {packages.map((pkg, i) => (
-              <div className={`package-card${pkg.highlight ? ' highlight' : ''}`} key={i} style={{ transition: 'transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s', boxShadow: '0 2px 12px #e5393522' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.045)'; e.currentTarget.style.boxShadow = '0 8px 32px #e5393544'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px #e5393522'; }}>
-                {pkg.highlight && <span className="package-badge">Most Popular</span>}
-                <h3>{pkg.name}</h3>
-                <div className="package-price">{pkg.price}</div>
-                <ul className="package-features">
-                  {pkg.features.map((f, j) => <li key={j}>{f}</li>)}
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {features.map((feature, index) => (
+              <div key={index} className="apex-card apex-text-center">
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                  {feature.icon}
+                </div>
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {feature.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hosting Plans */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Hosting Plans
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {hostingPlans.map((plan, index) => (
+              <div key={index} className="apex-card">
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {plan.name}
+                </h3>
+                <div className="apex-text-h2 apex-mb-md" style={{ color: 'var(--apex-primary)' }}>
+                  {plan.price}
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0' }}>
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="apex-mb-xs" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ color: 'var(--apex-accent-red)', fontWeight: 'bold' }}>✓</span>
+                      <span className="apex-text-small" style={{ color: '#64748b' }}>{feature}</span>
+                    </li>
+                  ))}
                 </ul>
-                <button className="package-btn" onClick={() => openModalForPackage(pkg.name)}>{pkg.button}</button>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="apex-btn apex-btn-primary"
+                  style={{ width: '100%' }}
+                >
+                  Choose Plan
+                </button>
               </div>
             ))}
           </div>
-        </section>
-        <section className="why-choose-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>Why Choose Us?</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <div className="why-choose-cards">
-            {whyChooseUs.map((item, i) => (
-              <div className="why-choose-card" key={i}>
-                <div className="why-choose-icon">{item.icon}</div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="apex-py-xl">
+        <div className="apex-container">
+          <div className="apex-text-center apex-mb-lg">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Why Choose Our Hosting?
+            </h2>
+            <div className="apex-section-highlight" />
+          </div>
+          
+          <div className="apex-grid apex-grid-3" style={{ gap: '2rem' }}>
+            {benefits.map((benefit, index) => (
+              <div key={index} className="apex-card">
+                <h3 className="apex-text-h3 apex-mb-sm" style={{ color: 'var(--apex-primary-700)' }}>
+                  {benefit.title}
+                </h3>
+                <p className="apex-text-body" style={{ color: '#64748b' }}>
+                  {benefit.desc}
+                </p>
               </div>
             ))}
           </div>
-        </section>
-        <section className="testimonials-section">
-          <h2 className="section-title" style={{ color: '#17977a', fontWeight: 800, fontSize: '2.5rem', textAlign: 'center', marginBottom: 0 }}>Testimonials</h2>
-          <hr style={{ width: 120, height: 8, background: '#e53935', border: 'none', borderRadius: 4, margin: '12px auto 16px auto' }} />
-          <div className="testimonials-cards">
-            {testimonials.map((item, i) => (
-              <div className="testimonial-card" key={i}>
-                <p className="testimonial-quote">“{item.quote}”</p>
-                <div className="testimonial-author">- {item.name}, {item.company}</div>
-              </div>
-            ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="apex-py-xl apex-bg-secondary">
+        <div className="apex-container">
+          <div className="apex-card apex-text-center">
+            <h2 className="apex-text-h1 apex-mb-sm">
+              Ready to Host Your Website?
+            </h2>
+            <div className="apex-section-highlight" />
+            <p className="apex-text-body apex-mb-lg" style={{ fontSize: '1.125rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+              Get reliable, secure hosting with local support and guaranteed uptime for your business.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="apex-btn apex-btn-primary"
+              >
+                Get Hosting Quote
+              </button>
+              <Link href="/contact" className="apex-btn apex-btn-secondary">
+                Contact Us
+              </Link>
+            </div>
           </div>
-        </section>
-        <footer className="custom-web-app-footer">
-          <span>
-            © 2024 Apex Webs. All rights reserved. Secure, reliable hosting for Kenya.
-          </span>
-        </footer>
-      </main>
+        </div>
+      </section>
     </div>
   );
 }

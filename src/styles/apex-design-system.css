@@ -1,0 +1,355 @@
+/* 
+ * ApexWebs Design System
+ * Admin Portal-Inspired Theme for Main Site
+ * Professional, Modern, Responsive
+ */
+
+/* Import Professional Font Stack */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Design Tokens */
+:root {
+  /* Primary Color Palette (Admin Portal Inspired) */
+  --apex-primary: #0d9488;
+  --apex-primary-light: #14b8a6;
+  --apex-primary-dark: #0f766e;
+  --apex-primary-50: #f0fdfa;
+  --apex-primary-100: #ccfbf1;
+  --apex-primary-200: #99f6e4;
+  --apex-primary-300: #5eead4;
+  --apex-primary-400: #2dd4bf;
+  --apex-primary-500: #14b8a6;
+  --apex-primary-600: #0d9488;
+  --apex-primary-700: #0f766e;
+  --apex-primary-800: #115e59;
+  --apex-primary-900: #134e4a;
+
+  /* Accent Colors (Admin Portal Red Accent) */
+  --apex-accent-red: #e53e3e;
+  --apex-accent-red-light: #fc8181;
+  --apex-accent-red-dark: #c53030;
+
+  /* Background System */
+  --apex-bg-primary: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
+  --apex-bg-secondary: #ffffff;
+  --apex-bg-accent: #f8fafc;
+  --apex-bg-hero: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 50%, #ffffff 100%);
+
+  /* Typography Scale */
+  --apex-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --apex-text-hero: 3.5rem;
+  --apex-text-h1: 2.5rem;
+  --apex-text-h2: 2rem;
+  --apex-text-h3: 1.5rem;
+  --apex-text-body: 1rem;
+  --apex-text-small: 0.875rem;
+
+  /* Font Weights */
+  --apex-weight-light: 300;
+  --apex-weight-normal: 400;
+  --apex-weight-medium: 500;
+  --apex-weight-semibold: 600;
+  --apex-weight-bold: 700;
+  --apex-weight-extrabold: 800;
+  --apex-weight-black: 900;
+
+  /* Spacing System */
+  --apex-space-xs: 0.25rem;
+  --apex-space-sm: 0.5rem;
+  --apex-space-md: 1rem;
+  --apex-space-lg: 1.25rem;
+  --apex-space-xl: 1.5rem;
+  --apex-space-2xl: 2rem;
+  --apex-space-3xl: 2.5rem;
+
+  /* Component Styles */
+  --apex-card-radius: 1rem;
+  --apex-card-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  --apex-card-shadow-hover: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+  --apex-button-radius: 0.75rem;
+  --apex-input-radius: 0.5rem;
+
+  /* Transitions */
+  --apex-transition-fast: 0.15s ease;
+  --apex-transition-normal: 0.2s ease;
+  --apex-transition-slow: 0.3s ease;
+}
+
+/* Base Typography - High Specificity */
+body .apex-font-family,
+.apex-font-family {
+  font-family: var(--apex-font-family) !important;
+}
+
+/* Override any existing styles */
+* {
+  box-sizing: border-box;
+}
+
+.apex-text-hero {
+  font-size: var(--apex-text-hero);
+  font-weight: var(--apex-weight-extrabold);
+  line-height: 1.1;
+  color: var(--apex-primary-700);
+}
+
+.apex-text-h1 {
+  font-size: var(--apex-text-h1);
+  font-weight: var(--apex-weight-bold);
+  line-height: 1.2;
+  color: var(--apex-primary-700);
+}
+
+.apex-text-h2 {
+  font-size: var(--apex-text-h2);
+  font-weight: var(--apex-weight-bold);
+  line-height: 1.3;
+  color: var(--apex-primary-700);
+}
+
+.apex-text-h3 {
+  font-size: var(--apex-text-h3);
+  font-weight: var(--apex-weight-semibold);
+  line-height: 1.4;
+  color: var(--apex-primary-700);
+}
+
+.apex-text-body {
+  font-size: var(--apex-text-body);
+  font-weight: var(--apex-weight-normal);
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.apex-text-small {
+  font-size: var(--apex-text-small);
+  font-weight: var(--apex-weight-normal);
+  line-height: 1.5;
+  color: #64748b;
+}
+
+/* Card Components - Admin Portal Style */
+.apex-card {
+  background: var(--apex-bg-secondary);
+  border-radius: var(--apex-card-radius);
+  box-shadow: var(--apex-card-shadow);
+  padding: var(--apex-space-md);
+  border-top: 4px solid var(--apex-accent-red);
+  transition: transform var(--apex-transition-normal), box-shadow var(--apex-transition-normal);
+}
+
+.apex-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--apex-card-shadow-hover);
+}
+
+.apex-card-compact {
+  background: var(--apex-bg-secondary);
+  border-radius: var(--apex-card-radius);
+  box-shadow: var(--apex-card-shadow);
+  padding: var(--apex-space-sm);
+  border-top: 3px solid var(--apex-accent-red);
+  transition: transform var(--apex-transition-normal), box-shadow var(--apex-transition-normal);
+}
+
+.apex-card-compact:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--apex-card-shadow-hover);
+}
+
+/* Clickable Card Styles */
+.apex-card-clickable,
+.apex-card-compact-clickable {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.apex-card-clickable:hover,
+.apex-card-compact-clickable:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Section Highlight - Red Accent */
+.apex-section-highlight {
+  width: 60px;
+  height: 4px;
+  background: var(--apex-accent-red);
+  border-radius: 2px;
+  margin: 0 auto 1.5rem auto;
+}
+
+/* Button Components */
+.apex-btn {
+  font-family: var(--apex-font-family);
+  font-weight: var(--apex-weight-semibold);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--apex-button-radius);
+  border: none;
+  cursor: pointer;
+  transition: all var(--apex-transition-normal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.apex-btn-primary {
+  background: linear-gradient(135deg, var(--apex-primary) 0%, var(--apex-primary-light) 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+}
+
+.apex-btn-primary:hover {
+  background: linear-gradient(135deg, var(--apex-primary-dark) 0%, var(--apex-primary) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
+}
+
+.apex-btn-secondary {
+  background: var(--apex-bg-secondary);
+  color: var(--apex-primary);
+  border: 2px solid var(--apex-primary-200);
+}
+
+.apex-btn-secondary:hover {
+  background: var(--apex-primary-50);
+  border-color: var(--apex-primary);
+  transform: translateY(-1px);
+}
+
+/* Layout Components */
+.apex-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--apex-space-sm);
+}
+
+.apex-section {
+  padding: var(--apex-space-3xl) 0;
+}
+
+.apex-hero-section {
+  background: var(--apex-bg-hero);
+  padding: var(--apex-space-3xl) 0;
+  text-align: center;
+}
+
+/* Grid System */
+.apex-grid {
+  display: grid;
+  gap: var(--apex-space-lg);
+}
+
+.apex-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.apex-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.apex-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --apex-text-hero: 2.5rem;
+    --apex-text-h1: 2rem;
+    --apex-text-h2: 1.75rem;
+    --apex-space-3xl: 3rem;
+  }
+
+  .apex-card {
+    padding: var(--apex-space-md);
+  }
+
+  .apex-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --apex-text-hero: 2rem;
+    --apex-text-h1: 1.75rem;
+    --apex-text-h2: 1.5rem;
+    --apex-space-3xl: 2rem;
+  }
+
+  .apex-container {
+    padding: 0 var(--apex-space-xs);
+  }
+}
+
+/* Animation Utilities */
+.apex-fade-in {
+  animation: apexFadeIn 0.6s ease-out;
+}
+
+.apex-slide-up {
+  animation: apexSlideUp 0.6s ease-out;
+}
+
+@keyframes apexFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes apexSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility Classes */
+.apex-text-center {
+  text-align: center;
+}
+
+.apex-text-left {
+  text-align: left;
+}
+
+.apex-text-right {
+  text-align: right;
+}
+
+.apex-mb-sm {
+  margin-bottom: var(--apex-space-sm);
+}
+
+.apex-mb-md {
+  margin-bottom: var(--apex-space-md);
+}
+
+.apex-mb-lg {
+  margin-bottom: var(--apex-space-lg);
+}
+
+.apex-mt-sm {
+  margin-top: var(--apex-space-sm);
+}
+
+.apex-mt-md {
+  margin-top: var(--apex-space-md);
+}
+
+.apex-mt-lg {
+  margin-top: var(--apex-space-lg);
+}

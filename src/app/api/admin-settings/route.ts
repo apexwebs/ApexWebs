@@ -9,7 +9,6 @@ const adminSettings = {
 
 export async function GET() {
   // Never return password in real app
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password, ...publicSettings } = adminSettings;
   return NextResponse.json(publicSettings);
 }

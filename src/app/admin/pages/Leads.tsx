@@ -22,6 +22,9 @@ export default function Leads() {
   const fetchLeads = async () => {
     try {
       const response = await fetch('/api/leads');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       
       if (data.success) {

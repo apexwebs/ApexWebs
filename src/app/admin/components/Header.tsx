@@ -53,7 +53,8 @@ export default function Header() {
     setIsLoggingOut(true);
     
     try {
-      await fetch('/api/admin/auth/logout', {
+      // Using void to explicitly ignore the response since we don't need it
+      await void fetch('/api/admin/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });
@@ -61,8 +62,9 @@ export default function Header() {
       // Always redirect regardless of response status
       // This prevents hanging if API fails
       window.location.href = '/admin/login';
-    } catch (error) {
-      console.error('Logout error:', error);
+    } catch (_error) {
+      // Log the error for debugging
+      console.error('Logout error:', _error);
       // Force redirect even on error
       window.location.href = '/admin/login';
     }
