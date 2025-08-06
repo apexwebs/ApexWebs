@@ -8,9 +8,8 @@ const adminSettings = {
 };
 
 export async function GET() {
-  // Never return password in real app
-  const { password: _, ...publicSettings } = adminSettings;
-  void _; // Mark as used
+  // Create a new object without the password field
+  const { password, ...publicSettings } = adminSettings;
   return NextResponse.json(publicSettings);
 }
 
