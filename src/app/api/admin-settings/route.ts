@@ -9,8 +9,8 @@ const adminSettings = {
 
 export async function GET() {
   // Never return password in real app
-  // @ts-ignore - password is intentionally unused
-  const { password, ...publicSettings } = adminSettings;
+  const { password: _, ...publicSettings } = adminSettings;
+  void _; // Mark as used
   return NextResponse.json(publicSettings);
 }
 
