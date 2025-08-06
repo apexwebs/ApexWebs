@@ -9,7 +9,7 @@ const adminSettings = {
 
 export async function GET() {
   // Never return password in real app
-  const { password, ...publicSettings } = adminSettings;
+  const { password: _, ...publicSettings } = adminSettings;
   return NextResponse.json(publicSettings);
 }
 
