@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "#hero", label: "Home" },
@@ -14,7 +14,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {

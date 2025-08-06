@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="apex-font-family" style={{ background: 'var(--apex-bg-primary)', minHeight: '100vh' }}>
       {/* HERO SECTION */}
-      <section className="apex-hero-section apex-fade-in">
+      <section id="hero" className="apex-hero-section apex-fade-in">
         <div className="apex-container">
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <h1 className="apex-text-hero apex-text-center apex-mb-md">
@@ -44,17 +44,17 @@ export default function Home() {
         </div>
       </section>
       {/* ABOUT SECTION */}
-      <section className="apex-py-xl">
+      <section id="about" className="apex-py-xl">
         <AboutPurposeSection />
       </section>
       
       {/* SERVICES SECTION */}
-      <section className="apex-py-xl apex-bg-secondary">
+      <section id="services" className="apex-py-xl apex-bg-secondary">
         <ServicesSection />
       </section>
       
       {/* PROJECTS SECTION */}
-      <section className="apex-py-xl">
+      <section id="projects" className="apex-py-xl">
         <div className="apex-container">
           <div className="apex-card" style={{ textAlign: 'center', borderTop: '4px solid var(--apex-accent-red)' }}>
             <h2 className="apex-text-h1 apex-text-center apex-mb-sm">
@@ -68,21 +68,21 @@ export default function Home() {
             <div className="apex-grid apex-grid-3 apex-mb-lg">
               {[
                 {
-                  imageSrc: "/images/ecommerce-sample.jpg",
+                  imageSrc: "/images/ecommerce-sample.png",
                   alt: "E-commerce Platform",
                   title: "Modern E-commerce Platform",
                   description: "Complete online store with payment integration, inventory management, and customer portal for a fashion retailer.",
                   tags: ["E-commerce", "Responsive", "Payment Gateway"],
                 },
                 {
-                  imageSrc: "/images/corporate-sample.jpg",
+                  imageSrc: "/images/corporate-sample.jpeg",
                   alt: "Professional Service Website",
                   title: "Professional Service Website",
                   description: "Corporate website with service showcases, team profiles, and client testimonials for a consulting firm.",
                   tags: ["Corporate", "CMS", "SEO Optimized"],
                 },
                 {
-                  imageSrc: "/images/startup-sample.jpg",
+                  imageSrc: "/images/startup-sample.jpeg",
                   alt: "Tech Startup Platform",
                   title: "Tech Startup Platform",
                   description: "Dynamic website with interactive features, blog integration, and user dashboard for a fintech startup.",

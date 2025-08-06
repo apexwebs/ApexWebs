@@ -8,8 +8,11 @@ const adminSettings = {
 };
 
 export async function GET() {
-  // Create a new object without the password field
-  const { password, ...publicSettings } = adminSettings;
+  // Return settings without the password field
+  const publicSettings = {
+    email: adminSettings.email,
+    phone: adminSettings.phone
+  };
   return NextResponse.json(publicSettings);
 }
 
