@@ -9,7 +9,8 @@ const adminSettings = {
 
 export async function GET() {
   // Never return password in real app
-  const { password: _, ...publicSettings } = adminSettings;
+  // @ts-ignore - password is intentionally unused
+  const { password, ...publicSettings } = adminSettings;
   return NextResponse.json(publicSettings);
 }
 
