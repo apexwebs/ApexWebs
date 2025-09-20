@@ -1,17 +1,39 @@
-/**
- * Next.js Middleware for ApexWebs
- * Handles route protection and authentication for admin portal
- */
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 
-// Middleware temporarily disabled to restore clean state
-// Will be restored once admin portal is working properly
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
 
-import { NextResponse } from 'next/server';
+export async function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
 
-export function middleware() {
+  if (!path.startsWith("/admin")) {
+    return NextResponse.next();
+  }
+
+  const token = request.cookies.get("adminToken")?.value;
+  const isLoginPage = path === "/admin/login";
+
+  if (!token && !isLoginPage) {
+    return NextResponse.redirect(new URL("/admin/login", request.url));
+  }
+
+  if (token) {
+    try {
+      await jwtVerify(token, JWT_SECRET);
+      if (isLoginPage) {
+        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+      }
+    } catch {
+      if (!isLoginPage) {
+        return NextResponse.redirect(new URL("/admin/login", request.url));
+      }
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [],
+  matcher: "/admin/:path*"
 };

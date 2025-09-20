@@ -1,35 +1,13 @@
-/**
- * Admin Logout API Route
- * Handles secure logout for ApexWebs Admin Portal
- * POST /api/admin/auth/logout
- */
-
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { AUTH_CONFIG } from "@/app/admin/lib/auth-config";
 
 export async function POST() {
-  try {
-    // Create response with success message
-    const response = NextResponse.json({
-      success: true,
-      message: 'Logout successful'
-    });
-
-    // Remove authentication cookie
-    response.cookies.set('apex-admin-session', '', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 0, // Expire immediately
-      path: '/admin'
-    });
-
+    // Create a response that will clear the auth cookie
+    const response = NextResponse.json({ success: true });
+    
+    // Clear the auth cookie
+    response.cookies.delete(AUTH_CONFIG.COOKIE.name);
+    
     return response;
-
-  } catch (error) {
-    console.error('Logout API error:', error);
-    return NextResponse.json(
-      { success: false, error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
 }

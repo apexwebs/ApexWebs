@@ -1,66 +1,55 @@
-/**
- * Admin Login API Route
- * Handles authentication requests for ApexWebs Admin Portal
- * POST /api/admin/auth/login
- */
-
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticateAdmin, createToken } from '@/app/admin/lib/auth';
+import { verifyCredentials, createToken } from '@/app/admin/lib/auth';
+import { AUTH_CONFIG } from '@/app/admin/lib/auth-config';
 
 export async function POST(request: NextRequest) {
-  try {
-    const { username, password } = await request.json();
+    try {
+        const body = await request.json();
+        const { username, password } = body;
+        
+        console.log('Login attempt:', { username });
 
-    // Validate input
-    if (!username || !password) {
-      return NextResponse.json(
-        { success: false, error: 'Username and password are required' },
-        { status: 400 }
-      );
+        if (!username || !password) {
+            console.log('Missing credentials');
+            return NextResponse.json(
+                { error: 'Username and password are required' },
+                { status: 400 }
+            );
+        }
+
+        console.log('Checking credentials...');
+        const isValid = await verifyCredentials(username, password);
+        console.log('Credentials valid:', isValid);
+        
+        if (!isValid) {
+            return NextResponse.json(
+                { error: 'Invalid credentials' },
+                { status: 401 }
+            );
+        }
+
+        console.log('Creating token...');
+        const token = await createToken({ username, role: "admin" });
+        console.log('Token created');
+        
+        const response = NextResponse.json(
+            { success: true },
+            { status: 200 }
+        );
+
+        console.log('Setting cookie...');
+        response.cookies.set(
+            AUTH_CONFIG.COOKIE.name,
+            token,
+            AUTH_CONFIG.COOKIE.options
+        );
+
+        return response;
+    } catch (error) {
+        console.error("Login error:", error);
+        return NextResponse.json(
+            { error: "Internal server error" },
+            { status: 500 }
+        );
     }
-
-    // Authenticate user
-    const result = await authenticateAdmin(username, password);
-    
-    if (!result.success) {
-      return NextResponse.json(
-        { success: false, error: result.error },
-        { status: 401 }
-      );
-    }
-
-    // Create JWT token
-    const token = await createToken(result.user!);
-    
-    if (!token) {
-      return NextResponse.json(
-        { success: false, error: 'Failed to create authentication token' },
-        { status: 500 }
-      );
-    }
-
-    // Create response with authentication cookie
-    const response = NextResponse.json(
-      { success: true, message: 'Login successful', user: result.user },
-      { status: 200 }
-    );
-
-    // Set authentication cookie
-    response.cookies.set('apex-admin-session', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60, // 24 hours in seconds
-      path: '/'
-    });
-
-    return response;
-
-  } catch (error) {
-    console.error('Login error:', error);
-    return NextResponse.json(
-      { success: false, error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
 }
