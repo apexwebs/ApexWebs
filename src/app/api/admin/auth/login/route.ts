@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyCredentials, createToken } from '@/app/admin/lib/auth';
 import { AUTH_CONFIG } from '@/app/admin/lib/auth-config';
+import { rateLimit } from '@/app/admin/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
     try {
+        // Check rate limit
+        const rateLimitResponse = rateLimit(request);
+        if (rateLimitResponse) {
+            return rateLimitResponse;
+        }
+
         const body = await request.json();
         const { username, password } = body;
         

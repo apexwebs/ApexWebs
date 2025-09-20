@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 import { AUTH_CONFIG } from "@/app/admin/lib/auth-config";
 
 export async function POST() {
